@@ -1,8 +1,9 @@
 package Tarea1
 
-abstract class AbstractPerceptron(val pesos: List<Double>, val tolerance: Double) : IPerceptron {
+abstract class AbstractPerceptron(val pesos: List<Double>) : IPerceptron {
 
-    var bias = 0.0
+    open var bias = 0.0
+    var tolerancia = 0.00001
 
     override fun procesador(inputs: List<Int>): Int {
 
@@ -11,7 +12,7 @@ abstract class AbstractPerceptron(val pesos: List<Double>, val tolerance: Double
             output += pesos[i] * inputs[i]
 
         return when {
-            output > bias -> 1
+            output-bias > 0 -> 1
             else -> 0
         }
     }
@@ -20,6 +21,6 @@ abstract class AbstractPerceptron(val pesos: List<Double>, val tolerance: Double
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    open fun calcBias() {}
+
 
 }

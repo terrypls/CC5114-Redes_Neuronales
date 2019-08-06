@@ -1,8 +1,6 @@
 package Tarea1
 
-class NandPerceptron(pesos: List<Double>, val tolerancia: Double) : AbstractPerceptron(pesos, tolerancia){
+class NandPerceptron(pesos: List<Double>, override var bias: Double) : AbstractPerceptron(pesos){
 
-    override fun calcBias() {
-        bias = (pesos.sum() - tolerancia)*-1
-    }
+
 }

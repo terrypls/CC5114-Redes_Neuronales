@@ -1,8 +1,5 @@
 package Tarea1
 
-class OrPerceptron(pesos: List<Double>, val tolerancia: Double) : AbstractPerceptron(pesos, tolerancia) {
+class OrPerceptron(pesos: List<Double>, override var bias: Double) : AbstractPerceptron(pesos) {
 
-    override fun calcBias() {
-        bias = pesos.min()!! - tolerancia
-    }
 }
