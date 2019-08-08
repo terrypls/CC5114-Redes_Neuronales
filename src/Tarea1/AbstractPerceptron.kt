@@ -12,7 +12,7 @@ abstract class AbstractPerceptron(val pesos: List<Double>) : IPerceptron {
             output += pesos[i] * inputs[i]
 
         return when {
-            output-bias > 0 -> 1
+            output + bias + tolerancia > 0 -> 1
             else -> 0
         }
     }
@@ -20,7 +20,6 @@ abstract class AbstractPerceptron(val pesos: List<Double>) : IPerceptron {
     override fun learning(inputs: List<Double>) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
-
 
 
 }

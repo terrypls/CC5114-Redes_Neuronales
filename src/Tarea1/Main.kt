@@ -1,5 +1,5 @@
 package Tarea1
 
-fun main(){
+fun main() {
 
 }
