@@ -1,16 +1,16 @@
-package Tarea1
+package Tarea1.Ejercicios
 
-import org.junit.jupiter.api.BeforeEach
+import Tarea1.*
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
 
-internal class OrPerceptronTest:AbstractPerceptronTest() {
+internal class OrPerceptronTest: AbstractPerceptronTest() {
 
     @Test
     fun procesador() {
-        pesos = listOf(2.0, 2.0)
-        val perceptron = OrPerceptron(pesos,-1.0)
+        pesos = arrayListOf(2.0, 2.0)
+        val perceptron = OrPerceptron(pesos, -1.0)
 
         assertEquals(1, perceptron.procesador(inputs11), "test 11")
         assertEquals(1, perceptron.procesador(inputs10),"test 10")
