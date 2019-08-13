@@ -1,10 +1,8 @@
 package Tarea1.Ejercicios
 
-import Tarea1.Ejercicios.NandPerceptron
-
 class NandCircuit {
 
-    val pesos = arrayListOf(-2.0, -2.0)
+    val pesos = arrayOf(-2.0, -2.0)
     val percep1 = NandPerceptron(pesos, 3.0)
     val percep2 = NandPerceptron(pesos, 3.0)
     val percep3 = NandPerceptron(pesos, 3.0)

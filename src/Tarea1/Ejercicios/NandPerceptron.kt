@@ -1,8 +1,8 @@
 package Tarea1.Ejercicios
 
-import Tarea1.AbstractPerceptron
+import Tarea1.Perceptron.AbstractPerceptron
 
-class NandPerceptron(pesos: ArrayList<Double>, override var bias: Double) : AbstractPerceptron(pesos) {
+class NandPerceptron(pesos: Array<Double>, override var bias: Double) : AbstractPerceptron(pesos) {
 
 
 }
