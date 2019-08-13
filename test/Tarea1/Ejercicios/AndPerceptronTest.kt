@@ -13,7 +13,7 @@ internal class AndPerceptronTest : AbstractPerceptronTest() {
 
     @Test
     fun procesador() {
-        pesos = arrayListOf(1.0, 3.0)
+        pesos = arrayOf(1.0, 3.0)
         val perceptron = AndPerceptron(pesos, -3.5)
         assertEquals(1, perceptron.procesador(inputs11),"test 11")
         assertEquals(0, perceptron.procesador(inputs10),"test 10")

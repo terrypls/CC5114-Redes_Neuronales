@@ -9,7 +9,7 @@ internal class OrPerceptronTest: AbstractPerceptronTest() {
 
     @Test
     fun procesador() {
-        pesos = arrayListOf(2.0, 2.0)
+        pesos = arrayOf(2.0, 2.0)
         val perceptron = OrPerceptron(pesos, -1.0)
 
         assertEquals(1, perceptron.procesador(inputs11), "test 11")
