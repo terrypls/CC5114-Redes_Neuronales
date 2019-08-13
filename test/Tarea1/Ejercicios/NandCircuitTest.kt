@@ -1,10 +1,10 @@
 package Tarea1.Ejercicios
 
-import Tarea1.AbstractPerceptronTest
+import Tarea1.AbstractNeuronTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
-internal class NandCircuitTest() : AbstractPerceptronTest() {
+internal class NandCircuitTest() : AbstractNeuronTest() {
 
 
     @Test

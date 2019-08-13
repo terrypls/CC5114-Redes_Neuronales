@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
 
-internal class NandPerceptronTest : AbstractPerceptronTest() {
+internal class NandNeuronTest : AbstractNeuronTest() {
 
     @Test
     fun procesador() {

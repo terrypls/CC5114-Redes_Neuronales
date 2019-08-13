@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
 
-internal class OrPerceptronTest: AbstractPerceptronTest() {
+internal class OrNeuronTest: AbstractNeuronTest() {
 
     @Test
     fun procesador() {
