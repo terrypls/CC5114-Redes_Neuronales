@@ -31,26 +31,28 @@ internal class RectaNeuronTest : AbstractNeuronTest() {
                 perceptron.procesador(it.first) == it.second -> exitos++
             }
         }
-
         val successRate: Double = exitos / testPoints.toDouble()
         print("Simple : success rate: $successRate \n")
-        assertTrue(successRate > 0.25)
-
+        assertTrue(successRate > 0.0)
     }
 
     @Test
     fun entrenamientoSimple() {
-
+        var holi: MutableList<Pair<Double, Double>> = mutableListOf(Pair(perceptron.pesos[0], perceptron.pesos[1]))
+        println("pre")
         trainSet.forEach {
             perceptron.entrenar(it.first, it.second)
+            holi.add(Pair(perceptron.pesos[0], perceptron.pesos[1]))
         }
+        holi.map { println("Pesos $it ") }
+
+
 
         testSet.forEach {
             when {
                 perceptron.procesador(it.first) == it.second -> exitos++
             }
         }
-
         val successRate: Double = exitos / testPoints.toDouble()
         print("Simple : success rate: $successRate \n")
         assertTrue(successRate > 0.5)
@@ -59,8 +61,21 @@ internal class RectaNeuronTest : AbstractNeuronTest() {
     @Test
     fun entrenamientoMultiple() {
 
+        repeat(100) {
+            trainSet.forEach {
+                perceptron.entrenar(it.first, it.second)
 
+            }
+
+        }
+
+        testSet.forEach {
+            when {
+                perceptron.procesador(it.first) == it.second -> exitos++
+            }
+        }
+        val successRate: Double = exitos / testPoints.toDouble()
+        print("Simple : success rate: $successRate \n")
+        assertTrue(successRate > 0.5)
     }
-
-
 }

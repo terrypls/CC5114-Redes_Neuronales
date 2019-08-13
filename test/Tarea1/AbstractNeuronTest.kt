@@ -3,6 +3,7 @@ package Tarea1
 import Extras.Utils
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import kotlin.random.Random
 
 abstract class AbstractNeuronTest {
 
@@ -12,8 +13,8 @@ abstract class AbstractNeuronTest {
     protected lateinit var inputs10: List<Int>
     protected lateinit var inputs01: List<Int>
     protected lateinit var inputs00: List<Int>
-    protected var initPesos:Array<Double> = arrayOf(0.0,0.0)
-    protected var initBias:Double = 0.0
+    protected var initPesos:Array<Double> = arrayOf(Random.nextDouble(-2.0,2.0), Random.nextDouble(-2.0,2.0))
+    protected var initBias:Double = Random.nextDouble(-2.0,2.0)
     protected var utils:Utils = Utils()
 
     @BeforeEach
