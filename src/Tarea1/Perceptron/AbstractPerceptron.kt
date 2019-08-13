@@ -12,7 +12,7 @@ abstract class AbstractPerceptron(val pesos: Array<Double>) : IPerceptron {
             output += pesos[i] * inputs[i]
 
         return when {
-            output > bias -> 1
+            output + bias > 0 -> 1
             else -> 0
         }
     }
