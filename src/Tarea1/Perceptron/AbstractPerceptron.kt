@@ -17,15 +17,15 @@ abstract class AbstractPerceptron(val pesos: Array<Double>) : IPerceptron {
         }
     }
 
-    override fun learning(inputs: List<Int>, diff: Int) {
+    override fun aprender(inputs: List<Int>, diff: Int) {
         for (i in pesos.indices)
             pesos[i] += learningRate * inputs[i] * diff
         bias += learningRate * diff
     }
 
-    override fun training(inputs: List<Int>, desireOutput: Int) {
+    override fun entrenar(inputs: List<Int>, desireOutput: Int) {
         val realOutput = procesador(inputs)
-        learning(inputs, desireOutput - realOutput)
+        aprender(inputs, desireOutput - realOutput)
     }
 }
 
