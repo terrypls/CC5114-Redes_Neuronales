@@ -11,6 +11,8 @@ abstract class AbstractPerceptronTest {
     protected lateinit var inputs10: List<Int>
     protected lateinit var inputs01: List<Int>
     protected lateinit var inputs00: List<Int>
+    protected var initPesos:Array<Double> = arrayOf(0.0,0.0)
+    protected var initBias:Double = 0.0
 
 
     @BeforeEach
