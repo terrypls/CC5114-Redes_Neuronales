@@ -1,36 +1,66 @@
 package Tarea1.Ejercicios
 
-import Extras.recta
+import Extras.Recta
 import Tarea1.*
 
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 internal class RectaNeuronTest : AbstractNeuronTest() {
 
 
-    protected val trainPoints = 1000
-    protected val testPoints = 10000
-    val recta: recta = recta(1, 2, -1, 4)
-    protected val trainSet = utils.crearPuntos(trainPoints, 10, 10, recta)
-    protected val testSet = utils.crearPuntos(testPoints,10,10,recta)
+    private val trainPoints = 1000
+    private val testPoints = 100000
+    private val recta: Recta = Recta(-1, 4)
+    private val trainSet = utils.crearPuntos(trainPoints, 15, 15, recta)
+    private val testSet = utils.crearPuntos(testPoints, 15, 15, recta)
+    private lateinit var perceptron: RectaPerceptron
+    private var exitos = 0
+
+    @BeforeEach
+    fun perceptro() {
+        perceptron = RectaPerceptron(initPesos, initBias)
+        exitos = 0
+    }
 
     @Test
-    fun trainOnce() {
-        val neuron = RectaPerceptron(initPesos, initBias)
-        trainSet.forEach {
-            neuron.entrenar(it.first, it.second)
-        }
-        // We change the set of points to test
-        var successfulTries = 0
+    fun sinEntrenamiento() {
         testSet.forEach {
             when {
-                neuron.procesador(it.first) == it.second -> successfulTries++
+                perceptron.procesador(it.first) == it.second -> exitos++
             }
         }
-        val successRate: Double = successfulTries.toDouble() / testPoints.toDouble()
-        print("One train : success rate: $successRate \n")
-        // We want it to be better than random
+
+        val successRate: Double = exitos / testPoints.toDouble()
+        print("Simple : success rate: $successRate \n")
+        assertTrue(successRate > 0.25)
+
+    }
+
+    @Test
+    fun entrenamientoSimple() {
+
+        trainSet.forEach {
+            perceptron.entrenar(it.first, it.second)
+        }
+
+        testSet.forEach {
+            when {
+                perceptron.procesador(it.first) == it.second -> exitos++
+            }
+        }
+
+        val successRate: Double = exitos / testPoints.toDouble()
+        print("Simple : success rate: $successRate \n")
         assertTrue(successRate > 0.5)
     }
+
+    @Test
+    fun entrenamientoMultiple() {
+
+
     }
+
+
+}

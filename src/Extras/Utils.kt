@@ -4,25 +4,25 @@ import kotlin.random.Random
 
 class Utils {
 
-    fun check(x: Int, y: Int, recta: recta): Int {
+    fun check(x: Int, y: Int, Recta: Recta): Int {
         return when {
-            recta.a * x + recta.b > y -> 1
+            Recta.a * x + Recta.b > y -> 1
             else -> 0
         }
 
     }
 
-    fun crearPuntos(numberPoints: Int, ancho: Int, largo: Int, recta: recta): Array<Pair<List<Int>, Int>> {
+    fun crearPuntos(numberPoints: Int, ancho: Int, largo: Int, Recta: Recta): Array<Pair<List<Int>, Int>> {
 
         return Array(numberPoints) {
             val x: Int = Random.nextInt(-ancho, ancho)
             val y: Int = Random.nextInt(-largo, largo)
-            val salidaDeseada: Int = check(x, y, recta)
+            val salidaDeseada: Int = check(x, y, Recta)
             Pair(listOf(x, y), salidaDeseada)
         }
     }
 }
 
-class recta(val x: Int, val y: Int, val a: Int, val b: Int) {
+class Recta(val a: Int, val b: Int) {
     //y = a*x + b
 }
