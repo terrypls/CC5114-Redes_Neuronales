@@ -38,7 +38,7 @@ internal class RectaNeuronTest : AbstractNeuronTest() {
 
     @Test
     fun entrenamientoSimple() {
-        var holi: MutableList<Pair<Double, Double>> = mutableListOf(Pair(perceptron.pesos[0], perceptron.pesos[1]))
+        val holi: MutableList<Pair<Double, Double>> = mutableListOf(Pair(perceptron.pesos[0], perceptron.pesos[1]))
         println("pre")
         trainSet.forEach {
             perceptron.entrenar(it.first, it.second)
