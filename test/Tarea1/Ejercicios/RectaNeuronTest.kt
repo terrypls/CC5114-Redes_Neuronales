@@ -20,8 +20,8 @@ internal class RectaNeuronTest : AbstractNeuronTest() {
 
     @BeforeEach
     fun perceptro() {
-        perceptron = RectaPerceptron(initPesos, initBias)
-        //perceptron= RectaPerceptron(arrayOf(0.0,0.0),0.0)
+        //perceptron = RectaPerceptron(initPesos, initBias)
+        perceptron= RectaPerceptron(arrayOf(0.0,0.0),0.0)
         exitos = 0
     }
 
