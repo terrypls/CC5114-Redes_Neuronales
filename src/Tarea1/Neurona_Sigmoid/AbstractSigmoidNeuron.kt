@@ -2,7 +2,7 @@ package Tarea1.Neurona_Sigmoid
 
 import kotlin.math.E
 
-abstract class AbstractSigmoidNeuron(override val pesos: Array<Double>) : Tarea1.Perceptron.AbstractNeurona(pesos) {
+abstract class AbstractSigmoidNeuron(override val pesos: Array<Double>) : Tarea1.Perceptron.AbstractNeuron(pesos) {
 
 
     private fun procesador(input: List<Int>, threshold: Double): Int {

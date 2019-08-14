@@ -2,7 +2,7 @@ package Tarea1.Ejercicios
 
 import Extras.Recta
 import Tarea1.*
-import Tarea1.Perceptron.RectaNeurona
+import Tarea1.Perceptron.RectaPerceptron
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -16,13 +16,13 @@ internal class RectaNeuronTest : AbstractNeuronTest() {
     private val recta: Recta = Recta(1, 0)
     private val trainSet = utils.crearPuntos(trainPoints, 20, 20, recta)
     private val testSet = utils.crearPuntos(testPoints, 20, 20, recta)
-    private lateinit var perceptron: RectaNeurona
+    private lateinit var perceptron: RectaPerceptron
     private var exitos = 0
 
     @BeforeEach
     fun perceptro() {
         //perceptron = RectaPerceptron(initPesos, initBias)
-        perceptron= RectaNeurona(arrayOf(0.0, 0.0), 0.0)
+        perceptron= RectaPerceptron(arrayOf(0.0, 0.0), 0.0)
         exitos = 0
     }
 

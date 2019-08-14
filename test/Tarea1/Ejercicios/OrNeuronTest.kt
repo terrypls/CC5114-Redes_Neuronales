@@ -1,7 +1,7 @@
 package Tarea1.Ejercicios
 
 import Tarea1.*
-import Tarea1.Perceptron.OrNeurona
+import Tarea1.Perceptron.OrPerceptron
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
@@ -11,7 +11,7 @@ internal class OrNeuronTest: AbstractNeuronTest() {
     @Test
     fun procesador() {
         pesos = arrayOf(2.0, 2.0)
-        val perceptron = OrNeurona(pesos, -1.0)
+        val perceptron = OrPerceptron(pesos, -1.0)
 
         assertEquals(1, perceptron.procesador(inputs11), "test 11")
         assertEquals(1, perceptron.procesador(inputs10),"test 10")

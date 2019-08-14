@@ -2,7 +2,7 @@ package Tarea1.Perceptron
 
 import Tarea1.Neurona.INeurona
 
-abstract class AbstractNeurona(open val pesos: Array<Double>) : INeurona {
+abstract class AbstractNeuron(open val pesos: Array<Double>) : INeurona {
 
     open var bias = 0.0
     private val learningRate = 0.1
