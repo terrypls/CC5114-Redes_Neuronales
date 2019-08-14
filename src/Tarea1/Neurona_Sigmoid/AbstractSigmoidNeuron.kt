@@ -2,23 +2,24 @@ package Tarea1.Neurona_Sigmoid
 
 import kotlin.math.E
 
-abstract class AbstractSigmoidNeuron(val pesos:Array<Double>):ISigmoidNeuron{
-    open var bias = 0.0
-    val learningRate = 0.1
+abstract class AbstractSigmoidNeuron(override val pesos: Array<Double>) : Tarea1.Perceptron.AbstractNeurona(pesos) {
 
-    override fun procesador(input: List<Double>): Double {
+
+    private fun procesador(input: List<Int>, threshold: Double): Int {
         var output = 0.0
         for (i in input.indices)
             output += pesos[i] * input[i]
         val sigma = output + bias
-        return (1/(1+ E*(-sigma)))
+        return when {
+            (1 / (1 + E * (-sigma))) > threshold -> 1
+            else -> 0
+        }
     }
 
-    override fun learning(input: List<Double>, threshold: Double) {
-        val realOutput = this.procesador(input)
-        val diff = threshold - realOutput
-        for (i in pesos.indices)
-            pesos[i] = pesos[i] + (learningRate * input[i] * diff)
-        bias += learningRate * diff
+
+    fun entrenar(input: List<Int>, desireOutput: Int, threshold: Double) {
+        val realOutput = procesador(input, threshold)
+        aprender(input, desireOutput - realOutput)
     }
+
 }

@@ -1,13 +1,15 @@
 package Tarea1.Ejercicios
 
+import Tarea1.Perceptron.NandNeurona
+
 class NandCircuit {
 
     val pesos = arrayOf(-2.0, -2.0)
-    val percep1 = NandPerceptron(pesos, 3.0)
-    val percep2 = NandPerceptron(pesos, 3.0)
-    val percep3 = NandPerceptron(pesos, 3.0)
-    val sum = NandPerceptron(pesos, 3.0)
-    val carry = NandPerceptron(pesos, 3.0)
+    val percep1 = NandNeurona(pesos, 3.0)
+    val percep2 = NandNeurona(pesos, 3.0)
+    val percep3 = NandNeurona(pesos, 3.0)
+    val sum = NandNeurona(pesos, 3.0)
+    val carry = NandNeurona(pesos, 3.0)
 
     var carrydigit = 0
 

@@ -1,6 +1,6 @@
-package Tarea1.Perceptron
+package Tarea1.Neurona
 
-interface IPerceptron {
+interface INeurona {
     fun procesador(inputs: List<Int>): Int
     fun aprender(inputs: List<Int>, diff: Int)
     fun entrenar(inputs: List<Int>, desireOutput: Int)
