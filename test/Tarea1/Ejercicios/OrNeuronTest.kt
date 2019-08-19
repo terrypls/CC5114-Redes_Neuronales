@@ -1,7 +1,6 @@
 package Tarea1.Ejercicios
 
 import Tarea1.*
-import Tarea1.Perceptron.OrPerceptron
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*

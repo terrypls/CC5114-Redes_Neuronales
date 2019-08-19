@@ -1,7 +1,5 @@
 package Tarea1.Ejercicios
 
-import Tarea1.Perceptron.NandPerceptron
-
 class NandCircuit {
 
     val pesos = arrayOf(-2.0, -2.0)

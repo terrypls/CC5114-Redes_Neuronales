@@ -2,7 +2,6 @@ package Tarea1.Ejercicios
 
 import Extras.Recta
 import Tarea1.*
-import Tarea1.Perceptron.RectaPerceptron
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
