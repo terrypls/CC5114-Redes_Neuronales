@@ -80,7 +80,7 @@ internal class RectaNeuronTest : AbstractNeuronTest() {
         }
         val chao: MutableList<Pair<Int, Int>> = mutableListOf(Pair(-99, -99))
         trainSet.forEach {
-            if (perceptron.procesador(it.first) == it.second) {
+            if (perceptron.procesador(it.first) ==1 ) {
                 posX.add(it.first[0])
                 posY.add(it.first[1])
             }else{
