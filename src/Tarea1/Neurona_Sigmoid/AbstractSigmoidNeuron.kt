@@ -11,21 +11,21 @@ import kotlin.random.Random
 
 abstract class AbstractSigmoidNeuron(private val entradas: Int) {
     /* pesos y bias entre -2 y 2 */
-    protected var  pesos:Array<Double> = Array(entradas) { Random.nextDouble(-2.0, 2.0) }
-    var bias: Double = Random.nextDouble(-2.0,2.0)
-    private val learningRate = 0.1
+    var pesos: Array<Double> = Array(entradas) { Random.nextDouble(-2.0, 2.0) }
+    var bias: Double = Random.nextDouble(-2.0, 2.0)
+    var learningRate = 0.1
 
     /**
      * metodo que se encarga de procesar los inputs que recibe la neurona
      * @param input Lista con valores de entrada de la neurona
      * @return Double entre 0 y 1 que representa el grado de acierto que tuvo la neurona
      */
-    private fun procesador(input: List<Double>): Double {
+    fun procesador(input: List<Double>): Double {
         var output = 0.0
-        for (i in input.indices)
+        for (i: Int in input.indices)
             output += pesos[i] * input[i]
-        val sigma = output + bias
-        return (1 / (1 + exp((-sigma))))
+
+        return (1 / (1 + exp(-(output + bias))))
     }
 
     /**
