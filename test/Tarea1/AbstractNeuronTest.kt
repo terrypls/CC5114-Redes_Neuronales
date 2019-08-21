@@ -19,6 +19,8 @@ abstract class AbstractNeuronTest {
     protected var utils:Utils = Utils()
     protected var sigmoidAnd:SigmoidNeuron = SigmoidNeuron(2)
     protected var sigmoidOr:SigmoidNeuron = SigmoidNeuron(2)
+    protected var sigmoidNand:SigmoidNeuron = SigmoidNeuron(2)
+
 
     @BeforeEach
     fun setUp() {
