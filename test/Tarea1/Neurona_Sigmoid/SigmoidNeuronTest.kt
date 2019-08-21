@@ -21,9 +21,10 @@ internal class SigmoidNeuronTest : AbstractNeuronTest() {
 
 
     /**
-     * Test generado por
-     * @author Bastian Inostroza (github: https://github.com/BastyZ/NeuralPerceptron )
+     * Test basado en codigo de Bastian Inostroza (github: https://github.com/BastyZ/NeuralPerceptron )
+     * Para comprobar el funcionamiento de la neurona
      */
+
     @Test
     fun neuronCurveTest() {
         //test generado por @Bastyz en github
@@ -31,7 +32,6 @@ internal class SigmoidNeuronTest : AbstractNeuronTest() {
         neuron.pesos = arrayOf(1.0)
         neuron.bias = 0.0
         neuron.learningRate = 0.0
-
 
         var lastValue = 1.0
         for (j in 20 downTo -20 step 2) {
