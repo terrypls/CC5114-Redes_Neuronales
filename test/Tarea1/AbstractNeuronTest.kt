@@ -1,6 +1,7 @@
 package Tarea1
 
 import Extras.Utils
+import Tarea1.Neurona_Sigmoid.SigmoidNeuron
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import kotlin.random.Random
@@ -16,9 +17,12 @@ abstract class AbstractNeuronTest {
     protected var initPesos:Array<Double> = arrayOf(Random.nextDouble(-2.0,2.0), Random.nextDouble(-2.0,2.0))
     protected var initBias:Double = Random.nextDouble(-2.0,2.0)
     protected var utils:Utils = Utils()
+    protected var sigmoidAnd:SigmoidNeuron = SigmoidNeuron(2)
+    protected var sigmoidOr:SigmoidNeuron = SigmoidNeuron(2)
 
     @BeforeEach
     fun setUp() {
+
 
         tolerance = 0.001
         inputs11 = listOf(1, 1)
