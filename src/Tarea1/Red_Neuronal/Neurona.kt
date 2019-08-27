@@ -21,10 +21,14 @@ import kotlin.random.Random
 class Neurona(var pesosEntrada: Int, var funcion: FuncionesActivacion, var ritmoAprendizaje: Double) {
     var pesos: Array<Double>
     var bias: Double
+    var delta: Double
+    var salida: Double
 
     init {
         pesos = Array(pesosEntrada) { Random.nextDouble(-2.0, 2.0) }
         bias = Random.nextDouble(-2.0, 2.0)
+        delta = 0.0
+        salida = 0.0
     }
 
     /**
@@ -33,11 +37,12 @@ class Neurona(var pesosEntrada: Int, var funcion: FuncionesActivacion, var ritmo
      * @return Double entre 0 y 1 que representa el grado de acierto que tuvo la neurona
      */
     fun procesador(inputs: List<Double>): Double {
-        var salida = 0.0
-        for (i: Int in inputs.indices)
-            salida += pesos[i] * inputs[i]
-        return funcion.calcula(salida)
+        assert(inputs.size == pesos.size) { "pesos y largo de inputs no calzan" }
+        val entrega = pesos.indices.sumByDouble { pesos[it] * inputs[it] }
+        salida = funcion.calcula(entrega)
+        return salida
     }
+
     /**
      * modifica bias y pesos de las entradas para reflejar el aprendizaje de la neurona
      * @param inputs Lista con valores de entrada de la neurona
@@ -47,7 +52,9 @@ class Neurona(var pesosEntrada: Int, var funcion: FuncionesActivacion, var ritmo
         for (i: Int in pesos.indices) {
             pesos[i] += ritmoAprendizaje * inputs[i] * diferencia
         }
+        bias += ritmoAprendizaje * diferencia
     }
+
     /**
      * entrena a la neurona con los inputs dados
      * @param inputs: lista con valores de entrada de la neurona
@@ -56,6 +63,9 @@ class Neurona(var pesosEntrada: Int, var funcion: FuncionesActivacion, var ritmo
     fun entrenar(inputs: List<Double>, deseado: Double) {
         val real = procesador(inputs)
         aprender(inputs, deseado - real)
+    }
+    fun calculoDelta(diferencia:Double):Double{
+        return diferencia*funcion.derivada(salida)
     }
 
 }
