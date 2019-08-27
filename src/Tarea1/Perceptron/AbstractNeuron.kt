@@ -1,13 +1,13 @@
 package Tarea1.Perceptron
 
-import Tarea1.Neurona.INeurona
 
-abstract class AbstractNeuron(open val pesos: Array<Double>) : INeurona {
+
+abstract class AbstractNeuron(open val pesos: Array<Double>){
 
     open var bias = 0.0
     private val learningRate = 0.1
 
-    override fun procesador(inputs: List<Int>): Int {
+     fun procesador(inputs: List<Int>): Int {
 
         var output = 0.0
         for (i in inputs.indices)
@@ -19,13 +19,13 @@ abstract class AbstractNeuron(open val pesos: Array<Double>) : INeurona {
         }
     }
 
-    override fun aprender(inputs: List<Int>, diff: Int) {
+     fun aprender(inputs: List<Int>, diff: Int) {
         for (i in pesos.indices)
             pesos[i] += learningRate * inputs[i] * diff
         bias += learningRate * diff
     }
 
-    override fun entrenar(inputs: List<Int>, desireOutput: Int) {
+     fun entrenar(inputs: List<Int>, desireOutput: Int) {
         val realOutput = procesador(inputs)
         aprender(inputs, desireOutput - realOutput)
     }
