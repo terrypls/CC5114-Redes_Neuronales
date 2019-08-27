@@ -12,8 +12,7 @@ import kotlin.random.Random
 /**
  * clase de neurona generica para usarla dentro de una red neuronal
  * @param pesosEntrada cantidad de pesos que tendra la neurona
- * @param funcion funcion de activacion que tendra la neurona para usar en
- * procesamiento y aprendizaje de esta
+ * @param funcion funcion de activacion que tendra la neurona para usar en procesamiento y aprendizaje de esta
  * @param ritmoAprendizaje a que ritmo se quiere que la neurona aprenda
  *
  */
@@ -48,11 +47,11 @@ class Neurona(var pesosEntrada: Int, var funcion: FuncionesActivacion, var ritmo
      * @param inputs Lista con valores de entrada de la neurona
      * @param diferencia  diferencia aritmetica entre el valor esperado y el obtenido por la neurona
      */
-    private fun aprender(inputs: List<Double>, diferencia: Double) {
+    private fun aprender(inputs: List<Double>) {
         for (i: Int in pesos.indices) {
-            pesos[i] += ritmoAprendizaje * inputs[i] * diferencia
+            pesos[i] += ritmoAprendizaje * inputs[i] * delta
         }
-        bias += ritmoAprendizaje * diferencia
+        bias += ritmoAprendizaje *delta
     }
 
     /**
@@ -62,10 +61,15 @@ class Neurona(var pesosEntrada: Int, var funcion: FuncionesActivacion, var ritmo
      */
     fun entrenar(inputs: List<Double>, deseado: Double) {
         val real = procesador(inputs)
-        aprender(inputs, deseado - real)
+        aprender(inputs)
     }
-    fun calculoDelta(diferencia:Double):Double{
-        return diferencia*funcion.derivada(salida)
+
+    /**
+     * calculo de la variacion de los pesos/bias en la neurona
+     * @param diferencia diferencia entre salida deseada y real
+     */
+    fun calculoDelta(diferencia:Double){
+        delta=  diferencia*funcion.derivada(salida)
     }
 
 }
