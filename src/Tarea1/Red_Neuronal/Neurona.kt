@@ -2,33 +2,40 @@ package Tarea1.Red_Neuronal
 
 
 import Tarea1.Red_Neuronal.Funciones_Activacion.FuncionesActivacion
+import Tarea1.Red_Neuronal.Funciones_Activacion.Sigmoid
 import java.nio.DoubleBuffer
 import kotlin.random.Random
+import kotlin.random.Random.Default.nextDouble
 
 /**
  * @author Sebastian Donoso
  */
 
 /**
- * clase de neurona generica para usarla dentro de una red neuronal
- * @param pesosEntrada cantidad de pesos que tendra la neurona
- * @param funcion funcion de activacion que tendra la neurona para usar en procesamiento y aprendizaje de esta
- * @param ritmoAprendizaje a que ritmo se quiere que la neurona aprenda
- *
+ * clase de neurona generica para usarla dentro de una red neuronal, tiene dos construcctores para cuando se asgina la
+ * funcion de activacion y cuando no
+ * Neurona(pesosEntrada,funcion) crea neurona con pesos aleatorios entre [-1, 1] con la funcion de activacion dada
+ * Neurona(pesosEntrada) crea neurona sigmoid con pesos aleatorios entre [-1, 1]
  */
 
-class Neurona(var pesosEntrada: Int, var funcion: FuncionesActivacion, var ritmoAprendizaje: Double) {
-    var pesos: Array<Double>
-    var bias: Double
-    var delta: Double
-    var salida: Double
+class Neurona(
+    private var pesos: MutableList<Double>,
+    private val funcion: FuncionesActivacion,
+    private var bias: Double = nextDouble(-1.0, 1.0)
+) {
+    constructor(
+        pesosEntrada: Int,
+        funcion: FuncionesActivacion
+    ) : this(
+        MutableList(pesosEntrada) { _ -> nextDouble(-1.0, 1.0) },
+        funcion
+    )
 
-    init {
-        pesos = Array(pesosEntrada) { Random.nextDouble(-2.0, 2.0) }
-        bias = Random.nextDouble(-2.0, 2.0)
-        delta = 0.0
-        salida = 0.0
-    }
+    constructor(pesosEntrada: Int) : this(pesosEntrada, Sigmoid())
+    private val ritmoAprendizaje: Double = 0.01
+    private var salida:Double = 0.0
+    private var delta: Double = 0.0
+
 
     /**
      * metodo que se encarga de procesar los inputs que recibe la neurona
@@ -38,7 +45,7 @@ class Neurona(var pesosEntrada: Int, var funcion: FuncionesActivacion, var ritmo
     fun procesador(inputs: List<Double>): Double {
         assert(inputs.size == pesos.size) { "pesos y largo de inputs no calzan" }
         val entrega = pesos.indices.sumByDouble { pesos[it] * inputs[it] }
-        salida = funcion.calcula(entrega)
+        salida = funcion.calcula(entrega + bias)
         return salida
     }
 
@@ -51,7 +58,7 @@ class Neurona(var pesosEntrada: Int, var funcion: FuncionesActivacion, var ritmo
         for (i: Int in pesos.indices) {
             pesos[i] += ritmoAprendizaje * inputs[i] * delta
         }
-        bias += ritmoAprendizaje *delta
+        bias += ritmoAprendizaje * delta
     }
 
     /**
@@ -68,8 +75,8 @@ class Neurona(var pesosEntrada: Int, var funcion: FuncionesActivacion, var ritmo
      * calculo de la variacion de los pesos/bias en la neurona
      * @param diferencia diferencia entre salida deseada y real
      */
-    fun calculoDelta(diferencia:Double){
-        delta=  diferencia*funcion.derivada(salida)
+    fun calculoDelta(diferencia: Double) {
+        delta = diferencia * funcion.derivada(salida)
     }
 
 }
