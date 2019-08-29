@@ -1,14 +1,18 @@
 package Tarea1.Red_Neuronal
 
+import Tarea1.Red_Neuronal.Funciones_Activacion.FuncionesActivacion
+import Tarea1.Red_Neuronal.Funciones_Activacion.Sigmoid
+
 class RedNeuronal(
-    val capas: Int,
-    val neuronasPorCapa: List<Int>,
-    val entradas: Int,
-    salidas: Int
+    private val capas: Int,
+    private val neuronasPorCapa: List<Int>,
+    private val entradas: Int,
+    private val salidas: Int
 ) {
 
-    fun entrenarRed(){}
-    fun aprenderRed(){}
-    fun backPropagation(){}
+    fun construirRed() {}
+    fun entrenarRed() {}
+    fun aprenderRed() {}
+    fun backPropagation() {}
     //TODO crear capas de la neurona
 }
