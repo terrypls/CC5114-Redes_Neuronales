@@ -15,7 +15,8 @@ import kotlin.random.Random.Default.nextDouble
  * clase de neurona generica para usarla dentro de una red neuronal, tiene dos construcctores para cuando se asgina la
  * funcion de activacion y cuando no
  * Neurona(pesosEntrada,funcion) crea neurona con pesos aleatorios entre [-1, 1] con la funcion de activacion dada
- * Neurona(pesosEntrada) crea neurona sigmoid con pesos aleatorios entre [-1, 1]
+ * Neurona(pesosEntrada) crea neurona sigmoid por defecto con pesos aleatorios entre [-1, 1] debido a que se tiene considerado
+ * que esta red neuronal se usara principalmente para clasificacion
  */
 
 class Neurona(
@@ -52,7 +53,6 @@ class Neurona(
     /**
      * modifica bias y pesos de las entradas para reflejar el aprendizaje de la neurona
      * @param inputs Lista con valores de entrada de la neurona
-     * @param diferencia  diferencia aritmetica entre el valor esperado y el obtenido por la neurona
      */
     private fun aprender(inputs: List<Double>) {
         for (i: Int in pesos.indices) {
@@ -64,15 +64,16 @@ class Neurona(
     /**
      * entrena a la neurona con los inputs dados
      * @param inputs: lista con valores de entrada de la neurona
-     * @param deseado valor esperado par alos inputs dados
+     * @param deseado valor esperado para los inputs dados
      */
     fun entrenar(inputs: List<Double>, deseado: Double) {
         val real = procesador(inputs)
+        calculoDelta(real-deseado)
         aprender(inputs)
     }
 
     /**
-     * calculo de la variacion de los pesos/bias en la neurona
+     * calculo de la variacion de los pesos/bias para la neurona
      * @param diferencia diferencia entre salida deseada y real
      */
     fun calculoDelta(diferencia: Double) {
