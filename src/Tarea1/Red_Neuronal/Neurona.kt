@@ -24,6 +24,7 @@ class Neurona(
     private val funcion: FuncionesActivacion,
     private var bias: Double = nextDouble(-1.0, 1.0)
 ) {
+
     constructor(
         pesosEntrada: Int,
         funcion: FuncionesActivacion
@@ -33,8 +34,9 @@ class Neurona(
     )
 
     constructor(pesosEntrada: Int) : this(pesosEntrada, Sigmoid())
+
     private val ritmoAprendizaje: Double = 0.01
-    private var salida:Double = 0.0
+    private var salida: Double = 0.0
     private var delta: Double = 0.0
 
 
@@ -68,7 +70,7 @@ class Neurona(
      */
     fun entrenar(inputs: List<Double>, deseado: Double) {
         val real = procesador(inputs)
-        calculoDelta(real-deseado)
+        calculoDelta(real - deseado)
         aprender(inputs)
     }
 
