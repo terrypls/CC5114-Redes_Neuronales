@@ -11,11 +11,11 @@ import Tarea1.Red_Neuronal.Funciones_Activacion.Sigmoid
  * clase que representa a una capa perteneciente a una red neuronal, tiene dos constructores
  */
 class CapaNeurona(
-    private val cantNeuronas: Int,
-    private var capaPrevia: CapaNeurona?
+    internal val cantNeuronas: Int,
+    internal var capaPrevia: CapaNeurona?
 ) {
-     lateinit var neuronas: Array<Neurona>
-     val salidas = MutableList(cantNeuronas) { .0 }
+    internal lateinit var neuronas: Array<Neurona>
+    internal val salidas = MutableList(cantNeuronas) { .0 }
     internal var capaSiguiente: CapaNeurona? = null
 
     /**
@@ -91,14 +91,4 @@ class CapaNeurona(
 
 
 
-    /**
-     * normaliza un valor al rango [0,1]
-     * @param valor valor a normalizar
-     * @param min   valor minimo que puede tomar el @param valor
-     * @param max valor maximo que puede tomar el @param valor
-     * @return valor normalizado
-     */
-    fun normalizar(valor: Double, min: Double, max: Double): Double {
-        return (valor - min) / (max - min)
-    }
 }

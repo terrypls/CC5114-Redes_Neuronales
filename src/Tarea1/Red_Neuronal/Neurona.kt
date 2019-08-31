@@ -20,9 +20,9 @@ import kotlin.random.Random.Default.nextDouble
  */
 
 class Neurona(
-    private var pesos: MutableList<Double>,
-    private val funcion: FuncionesActivacion,
-    private var bias: Double = nextDouble(-1.0, 1.0)
+    internal var pesos: MutableList<Double>,
+    internal val funcion: FuncionesActivacion,
+    internal var bias: Double = nextDouble(-1.0, 1.0)
 ) {
 
     constructor(
@@ -35,9 +35,9 @@ class Neurona(
 
     constructor(pesosEntrada: Int) : this(pesosEntrada, Sigmoid())
 
-    private val ritmoAprendizaje: Double = 0.01
+    private val ritmoAprendizaje: Double = 0.1
     internal var salida: Double = 0.0
-    private var delta: Double = 0.0
+    var delta: Double = 0.0
 
 
     /**
@@ -56,7 +56,7 @@ class Neurona(
      * modifica bias y pesos de las entradas para reflejar el aprendizaje de la neurona
      * @param inputs Lista con valores de entrada de la neurona
      */
-    private fun entrenar(inputs: List<Double>) {
+    fun entrenar(inputs: List<Double>) {
         for (i: Int in pesos.indices) {
             pesos[i] += ritmoAprendizaje * inputs[i] * delta
         }

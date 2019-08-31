@@ -13,7 +13,7 @@ internal class NeuronaTest {
     fun setUp() {
         val learnignRate:Double = 0.1
         val activacion:FuncionesActivacion = Sigmoid()
-        val neurona:Neurona = Neurona(2,activacion,learnignRate)
+        //val neurona:Neurona = Neurona(2,activacion,learnignRate)
 
     }
 
