@@ -36,12 +36,12 @@ class Neurona(
     constructor(pesosEntrada: Int) : this(pesosEntrada, Sigmoid())
 
     private val ritmoAprendizaje: Double = 0.01
-    private var salida: Double = 0.0
+    internal var salida: Double = 0.0
     private var delta: Double = 0.0
 
 
     /**
-     * metodo que se encarga de procesar los inputs que recibe la neurona
+     * metodo que se encarga de procesar los inputs que recibe la neurona y entregar la prediccion de esta
      * @param inputs Lista con valores de entrada de la neurona
      * @return Double entre 0 y 1 que representa el grado de acierto que tuvo la neurona
      */
@@ -56,7 +56,7 @@ class Neurona(
      * modifica bias y pesos de las entradas para reflejar el aprendizaje de la neurona
      * @param inputs Lista con valores de entrada de la neurona
      */
-    private fun aprender(inputs: List<Double>) {
+    private fun entrenar(inputs: List<Double>) {
         for (i: Int in pesos.indices) {
             pesos[i] += ritmoAprendizaje * inputs[i] * delta
         }
@@ -64,22 +64,19 @@ class Neurona(
     }
 
     /**
-     * entrena a la neurona con los inputs dados
-     * @param inputs: lista con valores de entrada de la neurona
-     * @param deseado valor esperado para los inputs dados
-     */
-    fun entrenar(inputs: List<Double>, deseado: Double) {
-        val real = procesador(inputs)
-        calculoDelta(real - deseado)
-        aprender(inputs)
-    }
-
-    /**
      * calculo de la variacion de los pesos/bias para la neurona
      * @param diferencia diferencia entre salida deseada y real
      */
-    fun calculoDelta(diferencia: Double) {
+    internal fun calculoDelta(diferencia: Double) {
         delta = diferencia * funcion.derivada(salida)
+    }
+
+    /**
+     * funcion aux para calculo de error para backpropagation
+     * @param indice indice en la lista del peso que se esta evaluando
+     */
+    fun calculoErrorPesos(indice: Int): Double {
+        return pesos[indice] * delta
     }
 
 }

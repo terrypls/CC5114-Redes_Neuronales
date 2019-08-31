@@ -9,30 +9,67 @@ import Tarea1.Red_Neuronal.Funciones_Activacion.Sigmoid
 
 /**
  * clase que representa a una capa perteneciente a una red neuronal, tiene dos constructores
- * CapaNeurona(cantNeuronas, capaAnterior, funcionesActivacion) crea una nueva capa con la cantidad de neuronas dadas, una referencia
- * a la capa anterior y la funcion de activacion para las neuronas
- * CapaNeurona(cantNeuronas, capaAnterior) crea una capa de neuronas con la funcion de activacion por defecto Sigmoid
- *
  */
 class CapaNeurona(
+    private val cantNeuronas: Int,
+    private var capaPrevia: CapaNeurona?
 ) {
+    private lateinit var neuronas: Array<Neurona>
+    private val salidas = MutableList(cantNeuronas) { .0 }
+    internal var capaSiguiente: CapaNeurona? = null
 
-    constructor(
-        cantNeuronas: Int,
-        capaAnterior: CapaNeurona?,
-        funcionesActivacion: FuncionesActivacion) :
-            this()
-    constructor(cantNeuronas: Int,
-                capaAnterior: CapaNeurona?) :
-            this(cantNeuronas,
-                capaAnterior,
-                Sigmoid())
+    /**
+     *metodo que crea las neuronas asociadas a esta capa con una funcion de activacion especifica
+     * @param pesos cantidad de entradas que tendran las neuronas de la capa
+     * @param funcionesActivacion funcion de activacion que tendran las neuronas de la capa
+     */
+    fun crearNeuronas(pesos: Int, funcionesActivacion: FuncionesActivacion = Sigmoid()) {
+        neuronas = Array(cantNeuronas) { Neurona(pesos, funcionesActivacion) }
+    }
 
-    var capaSiguiente: CapaNeurona? = null
+    fun entrenarCapa(inputs: List<Double>): MutableList<Double> {
+        assert(::neuronas.isInitialized) { "no se ha inicializado la capa" }
+        neuronas.withIndex().forEach { (i, neurona) ->
+            salidas[i] = neurona.procesador(inputs)
+        }
+        return when {
+            capaSiguiente != null -> capaSiguiente!!.entrenarCapa(salidas) //si es que quedan mas capas por recorrer
+            else -> salidas //si la capa es la ultima dentro de la red
+        }
+    }
 
-    fun entrenarCapa() {}
-    fun aprenderCapa() {}
-    fun backPropagationCapa() {}
+    /**
+     * metodo para realizar la primera backPropagation
+     * Metodo recursivo
+     * @param inputs lista con los valores esperados
+     */
+    fun backPropagationError(inputs: List<Double>) {
+        neuronas.withIndex().forEach { (i, neurona) ->
+            val error = inputs[i] - neurona.salida
+            neurona.calculoDelta(error)
+        }
+        capaPrevia?.backPropagationError()
+
+    }
+
+    /**
+     * metodo para realizar backpropagation a lo largo de las capas de la red
+     * Metodo recursivo
+     */
+    private fun backPropagationError() {
+        neuronas.withIndex().forEach { (i, neurona) ->
+            var error = 0.0
+            capaSiguiente!!.neuronas.map {
+                error += it.calculoErrorPesos(i)
+            }
+            neurona.calculoDelta(error)
+        }
+        capaPrevia?.backPropagationError()
+
+    }
+
+    //TODO actualizar los pesos
+
     /**
      * normaliza un valor al rango [0,1]
      * @param valor valor a normalizar
