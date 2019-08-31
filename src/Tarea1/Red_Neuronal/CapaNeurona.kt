@@ -14,8 +14,8 @@ class CapaNeurona(
     private val cantNeuronas: Int,
     private var capaPrevia: CapaNeurona?
 ) {
-    private lateinit var neuronas: Array<Neurona>
-    private val salidas = MutableList(cantNeuronas) { .0 }
+     lateinit var neuronas: Array<Neurona>
+     val salidas = MutableList(cantNeuronas) { .0 }
     internal var capaSiguiente: CapaNeurona? = null
 
     /**
@@ -27,6 +27,11 @@ class CapaNeurona(
         neuronas = Array(cantNeuronas) { Neurona(pesos, funcionesActivacion) }
     }
 
+    /**
+     * metodo que entrena las neuronas correspondientes a la capa y alimenta a la capa siguiente con los valores obtenidos
+     * metodo recursivo
+     * @param inputs valores para entrenar la capa
+     */
     fun entrenarCapa(inputs: List<Double>): MutableList<Double> {
         assert(::neuronas.isInitialized) { "no se ha inicializado la capa" }
         neuronas.withIndex().forEach { (i, neurona) ->
@@ -68,7 +73,23 @@ class CapaNeurona(
 
     }
 
-    //TODO actualizar los pesos
+    /**
+     *metodo para propagar la actualizacion de pesos de la capa
+     * metodo recursivo
+     * @param inputs valores de entrada que la neurona computo
+     */
+    fun actualizarPesos(inputs: List<Double>) {
+        val entradas: List<Double> = when (capaPrevia) {
+            null -> inputs
+            else -> capaPrevia!!.salidas
+        }
+        neuronas.map {
+            it.entrenar(entradas)
+        }
+        capaSiguiente?.actualizarPesos(inputs)
+    }
+
+
 
     /**
      * normaliza un valor al rango [0,1]
