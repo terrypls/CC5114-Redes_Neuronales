@@ -1,3 +1,4 @@
+import Tarea1.Red_Neuronal.Neurona
 import jdk.nashorn.internal.codegen.ObjectClassGenerator.pack
 import org.knowm.xchart.*
 import java.awt.BorderLayout
@@ -12,7 +13,18 @@ import javax.swing.Spring.height
 
 
 fun main() {
+    val a = Neurona(2)
+    val b = Neurona(2)
+    val c = Neurona(2)
+    val d  = listOf<Double>(1.0,2.0)
+    val e = listOf(a,b,c)
+    println("pesos de cada neurona iniciales ${a.pesos},${b.pesos},${c.pesos}")
+    e.forEach {
+        it.entrenar(d)
+    }
+    println("pesos de cada neurona iniciales ${a.pesos},${b.pesos},${c.pesos}")
 
+/*
 // Create Chart
     val chart = XYChartBuilder().width(600).height(400).title("Area Chart").xAxisTitle("X").yAxisTitle("Y").build()
 
@@ -27,7 +39,9 @@ fun main() {
     SwingWrapper(chart).displayChart()
 // Schedule a job for the event-dispatching thread:
 // creating and showing this application's GUI.
+    */
     /*javax.swing.SwingUtilities.invokeLater {
+
         // Create and set up the window.
         val frame = JFrame("Advanced Example")
         frame.layout = BorderLayout()
@@ -45,4 +59,6 @@ fun main() {
         frame.pack()
         frame.isVisible = true
     }*/
+
+
 }

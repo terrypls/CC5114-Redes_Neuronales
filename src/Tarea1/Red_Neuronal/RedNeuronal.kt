@@ -1,5 +1,7 @@
 package Tarea1.Red_Neuronal
 
+import kotlin.math.abs
+import kotlin.math.max
 import kotlin.random.Random
 
 /**
@@ -19,12 +21,17 @@ class RedNeuronal(
     private val entradas: Int,
     private val salidas: Int
 ) {
-    private lateinit var valor:List<Double>
+    internal var valor: MutableList<Double> = mutableListOf()
     private lateinit var capas: Array<CapaNeurona?>
     var precision: MutableList<Double> = mutableListOf()
     //lista para almacenar los set de datos suministrados a la red
-    private val data: MutableList<DataSet> =
-        mutableListOf()
+    internal val data: MutableList<DataSet> = mutableListOf()
+    var eleccion:Int = 0
+
+
+    init {
+        this.crearRed()
+    }
 
     /**
      * clase interna para guardar informacion sobre los set de datos que se le suministraran a la red para entrenamiento
@@ -61,20 +68,30 @@ class RedNeuronal(
                     else -> capas[i - 1]
                 }
             )
-            //le dice a cada capa quien es su siguiente
-            capa!!.capaSiguiente = when (i) {
-                numeroCapas -> null
-                else -> capas[i + 1]
-            }
             //creamos las neuronas de cada una de las capas
-            capa.crearNeuronas(
+            capas[i]!!.crearNeuronas(
                 pesos = when {
-                    capa.capaPrevia != null -> capas[i]!!.salidas.size
+                    capas[i]!!.capaPrevia != null -> capas[i]!!.capaPrevia!!.salidas.size
                     else -> entradas
                 }
             )
 
         }
+        capas.withIndex().forEach { (i, capa) ->
+            //le dice a cada capa quien es su siguiente
+            capas[i]!!.capaSiguiente = when (i) {
+                numeroCapas - 1 -> null
+                else -> capas[i + 1]
+            }
+
+        }
+    }
+
+    fun elige(inputs: List<Double>): Int {
+        alimentarRed(inputs)
+        valor = capas.last()!!.salidas
+
+        return valor.indexOf(valor.max())
     }
 
     /**
@@ -85,22 +102,23 @@ class RedNeuronal(
     fun entrenarRed(repeticiones: Int) {
         for (i in 0 until repeticiones) {
             var acierto = 0.toDouble()
-            //toma un indice aleatorio para comparar y ver la precision
-            val indice = Random.nextInt(0,valor.size)
+
             data.shuffle()//desordenamos la lista
             data.forEach { (input, output) ->
                 entrenarRed(input, output)
 
-                if(valor[indice]==output[indice])acierto++
+                if (abs((valor[eleccion] - output[output.indexOf(output.max())]))<0.01) {
+                    acierto++}
             }
-            precision.add(acierto/(data.size*100))
+
+            println(acierto)
+            precision.add(acierto / (data.size * 100))
         }
 
     }
 
     fun entrenarRed(inputs: List<Double>, outputs: List<Double>) {
-        alimentarRed(inputs)
-        valor = capas.last()!!.salidas
+        eleccion = elige(inputs)
         backPropagationError(outputs)
         actualizarPesos(inputs)
     }

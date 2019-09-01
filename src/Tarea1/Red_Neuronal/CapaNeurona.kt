@@ -38,8 +38,8 @@ class CapaNeurona(
             salidas[i] = neurona.procesador(inputs)
         }
         return when {
-            capaSiguiente != null -> capaSiguiente!!.entrenarCapa(salidas) //si es que quedan mas capas por recorrer
-            else -> salidas //si la capa es la ultima dentro de la red
+            this.capaSiguiente != null -> this.capaSiguiente!!.entrenarCapa(this.salidas) //si es que quedan mas capas por recorrer
+            else -> this.salidas //si la capa es la ultima dentro de la red
         }
     }
 
@@ -64,8 +64,8 @@ class CapaNeurona(
     private fun backPropagationError() {
         neuronas.withIndex().forEach { (i, neurona) ->
             var error = 0.0
-            capaSiguiente!!.neuronas.map {
-                error += it.calculoErrorPesos(i)
+            for(siguiente in capaSiguiente!!.neuronas){
+                error += siguiente.calculoErrorPesos(i)
             }
             neurona.calculoDelta(error)
         }
