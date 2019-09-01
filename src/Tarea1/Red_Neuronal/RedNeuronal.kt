@@ -91,6 +91,7 @@ class RedNeuronal(
         alimentarRed(inputs)
         valor = capas.last()!!.salidas
 
+
         return valor.indexOf(valor.max())
     }
 
@@ -111,7 +112,7 @@ class RedNeuronal(
                     acierto++}
             }
 
-            println(acierto)
+
             precision.add(acierto / (data.size * 100))
         }
 
