@@ -53,6 +53,11 @@ class RedNeuronal(
     internal data class DataSet(val inputs: List<Double>, val outputs: List<Double>)
 
 
+    /**
+     * clase interna para guardar los set sobre los cuales se realizaran las pruebas de eficacia sobre la red
+     * @param inputs valores entregados a la red
+     * @param outputs valores esperados de la red
+     */
     fun agregarTest(inputs: List<Double>, outputs: List<Double>) {
         test.add(DataSet(inputs, outputs))
     }
@@ -103,17 +108,21 @@ class RedNeuronal(
         }
     }
 
+    /**
+     * metodo que elige cual de las posibles respuestas es la correcta
+     * @param inputs datos suministrdos a la red
+     * @return indice elegido en el vector de salida como respuesta correcta
+     */
     fun elige(inputs: List<Double>): Int {
         alimentarRed(inputs)
         valor = capas.last()!!.salidas
-
-
         return valor.indexOf(valor.max())
     }
 
     /**
      * metodo para entrenar la red una cantidad definida de veces tomando un conjunto input/output definido en la clase
      * dataSet
+     * genera informacion sobre la precision y error cuadratico media de la red
      * @param repeticiones cantidad de veces que se entrenara
      */
     fun entrenarRed(repeticiones: Int) {
@@ -138,6 +147,11 @@ class RedNeuronal(
         }
     }
 
+    /**
+     * metodo similar a entrenarRed, pero dedicado a procesar los datos guardados para testeo
+     * genera informacion sobre la precision y error cuadratico media de la red
+     * Cantidad de iteraciones sobre los test
+     */
     fun probarRed(repeticiones: Int) {
         for (i in 0 until repeticiones) {
             var acierto = 0.toDouble()
@@ -160,20 +174,37 @@ class RedNeuronal(
         }
     }
 
+    /**
+     * metodo que se encarga de elegir un resultado y generar la propagacion de errores y actualizacion de pesos
+     * @param inputs entradas para la red neuronal
+     * @param outputs valores esperados de salida
+     */
     private fun entrenarRed(inputs: List<Double>, outputs: List<Double>) {
         eleccion = elige(inputs)
         backPropagationError(outputs)
         actualizarPesos(inputs)
     }
 
+    /**
+     * metodo que se encarga de proveer a la primera capa de la red con los inputs recibidos
+     * @param inputs entradas para la red neuronal
+     */
     fun alimentarRed(inputs: List<Double>) {
         capas.first()!!.entrenarCapa(inputs)
     }
 
+    /**
+     * metodo que genera la propagacion de errores en la red desde la ultima capa de la red
+     * @param esperado valores esperados de salida de la red
+     */
     private fun backPropagationError(esperado: List<Double>) {
         capas.last()!!.backPropagationError(esperado)
     }
 
+    /**
+     * metodo que inicia la actualizacion de pesos en la primera capa de la red
+     * @param inputs entradas para la red neuronal
+     */
     fun actualizarPesos(inputs: List<Double>) {
         capas.first()!!.actualizarPesos(inputs)
     }

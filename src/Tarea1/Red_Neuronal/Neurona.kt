@@ -14,8 +14,8 @@ import kotlin.random.Random.Default.nextDouble
 /**
  * clase de neurona generica para usarla dentro de una red neuronal, tiene dos construcctores para cuando se asgina la
  * funcion de activacion y cuando no
- * Neurona(pesosEntrada,funcion) crea neurona con pesos aleatorios entre [-1, 1] con la funcion de activacion dada
- * Neurona(pesosEntrada) crea neurona sigmoid por defecto con pesos aleatorios entre [-1, 1] debido a que se tiene considerado
+ * Neurona(pesosEntrada,funcion) crea neurona con pesos aleatorios entre [-2, 2] con la funcion de activacion dada
+ * Neurona(pesosEntrada) crea neurona sigmoid por defecto con pesos aleatorios entre [-2, 2] debido a que se tiene considerado
  * que esta red neuronal se usara principalmente para clasificacion
  */
 
