@@ -56,16 +56,21 @@ de Iris(120 datos aproximadamente) para el entrenamiento de la red y el restante
 de la red, en donde se iteró 10 veces sobre los datos 
 
 
-Con respecto a los resultados obtenidos del entrenamiento de la red, se puede apreciar en la  ![imagen](/src/Assets/Aprendizaje.png "Curva de aprendizaje") 
+Con respecto a los resultados obtenidos del entrenamiento de la red, se puede apreciar en la imagen:
+ 
+ ![imagen](/src/Assets/Aprendizaje.png "Curva de aprendizaje") 
 que la red no alcanza a superar el 70% de precisión en sus predicciones, con una variacion aproximada de 5% tanto hacia arriba como hacia abajo para otras 
  ejecuciones del programa. La evolución de la curva lleva a pensar que la neurona paso de predecir bien el resultado del input
  dado desde 1 cada 3 veces a 2 cada 3 veces
  
- El error se calculo usando la fórmula del error cuadrático medio, dando por resultado la siguiente 
+ El error se calculo usando la fórmula del error cuadrático medio, dando por resultado la siguiente imagen:
+ 
  ![imagen](/src/Assets/Error.png "Curva de error"), en donde se nota un error bastante grosero dentro de las primeras iteracion 
  para luego dar paso a un error consistente con la precisión expuesta en la imagen de la curva de precisión
  
- Para las pruebas con los datos restantes, se obtuvo el siguiente  ![gráfico](/src/Assets/Test.png "Porcentaje de aciertos")
+ Para las pruebas con los datos restantes, se obtuvo el siguiente gráfico:
+   
+  ![gráfico](/src/Assets/Test.png "Porcentaje de aciertos")
   de donde se obtiene que el porcentaje de aciertos es un poco menor que a la precisión final observada en el gráfico de 
   aprendizaje
   
