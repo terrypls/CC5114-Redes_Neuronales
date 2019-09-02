@@ -3,6 +3,7 @@ package Tarea1.Red_Neuronal
 import javax.xml.crypto.Data
 import kotlin.math.abs
 import kotlin.math.max
+import kotlin.math.pow
 import kotlin.random.Random
 
 /**
@@ -40,6 +41,7 @@ class RedNeuronal(
 
 
     init {
+        require(numeroCapas == neuronasPorCapa.size)
         this.crearRed()
     }
 
@@ -123,11 +125,16 @@ class RedNeuronal(
                 entrenarRed(input, output)
                 if (eleccion == output.indexOf(output.max())) acierto++
                 else {
-                    error++
+                    //error++
+                    error += (eleccion - output.indexOf(output.max())).toDouble().pow(2)
                 }
             }
-            calculoErro.add(error *100/ data.size)
-            precision.add(acierto *100/ (data.size))
+            println(error / data.size)
+
+            println(acierto / data.size)
+            println("--------------------------------------------------------------------------------------")
+            calculoErro.add(error / data.size * 100)
+            precision.add(acierto / data.size * 100)
         }
     }
 
@@ -141,13 +148,14 @@ class RedNeuronal(
                 eleccion = elige(inputs)
                 if (eleccion == output.indexOf(output.max())) acierto++
                 else {
-                    error++
+                    //error++
+                    error += (eleccion - output.indexOf(output.max())).toDouble().pow(2)
                 }
-                println("$eleccion ${ output.indexOf(output.max())}")
+
                 recuento.add(Pair(eleccion, output.indexOf(output.max())))
             }
-            pruebaError.add(error*100 / test.size)
-            pruebaPrecision.add(acierto*100 / (test.size))
+            pruebaError.add(error / test.size * 100)
+            pruebaPrecision.add(acierto / test.size * 100)
 
         }
     }

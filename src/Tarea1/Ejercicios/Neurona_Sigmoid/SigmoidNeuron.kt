@@ -1,4 +1,4 @@
-package Tarea1.Neurona_Sigmoid
+package Tarea1.Ejercicios.Neurona_Sigmoid
 
 /**
  * @author Sebastian Donoso

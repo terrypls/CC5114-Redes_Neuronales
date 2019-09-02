@@ -1,4 +1,4 @@
-package Tarea1.Perceptron
+package Tarea1.Ejercicios.Perceptron
 
 
 

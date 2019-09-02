@@ -1,9 +1,8 @@
 package Tarea1
 
 import Extras.Utils
-import Tarea1.Neurona_Sigmoid.SigmoidNeuron
+import Tarea1.Ejercicios.Neurona_Sigmoid.SigmoidNeuron
 import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
 import kotlin.random.Random
 
 abstract class AbstractNeuronTest {

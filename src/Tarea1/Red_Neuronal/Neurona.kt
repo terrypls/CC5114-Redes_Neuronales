@@ -22,14 +22,14 @@ import kotlin.random.Random.Default.nextDouble
 class Neurona(
     internal var pesos: MutableList<Double>,
     internal val funcion: FuncionesActivacion,
-    internal var bias: Double = nextDouble(-1.0, 1.0)
+    internal var bias: Double = nextDouble(-2.0, 2.0)
 ) {
 
     constructor(
         pesosEntrada: Int,
         funcion: FuncionesActivacion
     ) : this(
-        MutableList(pesosEntrada) { _ -> nextDouble(-1.0, 1.0) },
+        MutableList(pesosEntrada) { _ -> nextDouble(-2.0, 2.0) },
         funcion
     )
 

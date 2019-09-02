@@ -13,8 +13,9 @@ import kotlin.system.exitProcess
  */
 
 class ClasificadorIris(val nombreArchivo: String, val numEntrenamientos: Int) {
-    private val plot = Graficador("Learning Rate", "Epoch", "Precision (%)")
-    private val plot2 = Graficador("Resultados de Test","Epoch","Precision(%)")
+    private val plot = Graficador("Learning Rate", "Entrenamientos", "Precision (%)")
+    private val plot2 = Graficador("Resultados de Test", "Iteraciones", "Precision(%)")
+    private val plot3 = Graficador("Error", "Entrenamientos", "Valor")
     private  var sepalLength: MutableList<Double> = mutableListOf()
     private  var sepalWidth: MutableList<Double> = mutableListOf()
     private  var petalLength: MutableList<Double> = mutableListOf()
@@ -27,7 +28,6 @@ class ClasificadorIris(val nombreArchivo: String, val numEntrenamientos: Int) {
     private var testing: Int = 0
 
     var cantNeuronas = listOf(4, 3,4, 3)
-
     init {
         redNeuronal = RedNeuronal(4, cantNeuronas, 4, 3)
         procesarDatos()
@@ -108,19 +108,20 @@ class ClasificadorIris(val nombreArchivo: String, val numEntrenamientos: Int) {
      */
     fun graficar() {
         plot.yData = redNeuronal.precision.toDoubleArray()
-        plot.errorData = redNeuronal.calculoErro.toDoubleArray()
+        plot3.yData = redNeuronal.calculoErro.toDoubleArray()
         plot.draw()
+        plot3.draw()
     }
     fun graficarTest(){
         plot2.yData = redNeuronal.pruebaPrecision.toDoubleArray()
-        plot2.errorData = redNeuronal.pruebaError.toDoubleArray()
+
         plot2.draw()
     }
 }
 
 fun main() {
 
-    val clasificador = ClasificadorIris("Tarea1/DataSet/iris.data", 1000)
+    val clasificador = ClasificadorIris("Tarea1/DataSet/iris.data", 100)
     clasificador.graficar()
     clasificador.pruebas()
 }
