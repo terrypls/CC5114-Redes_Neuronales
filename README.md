@@ -31,7 +31,7 @@ se dividió en 3 clases principales, [Neurona](https://github.com/terrypls/CC511
    y [RedNeuronal]( https://github.com/terrypls/CC5114-Redes_Neuronales/blob/master/src/Tarea1/Red_Neuronal/RedNeuronal.kt). La descripción de cada clase y los métodos asociados estan documentados en los archivos correspondientes.
 
 ### Análisis
-<<<<<<< HEAD
+
 #### Implementacion y dificultads
  Se prefirió la 
 aproximación a clases para la implementación,debido a que era un lenguaje nuevo y la semejanza estructural que tiene Kotlin
@@ -47,7 +47,7 @@ y el hecho de que se prefiriera hacer una implementación en base a clases  en v
 material disponible, tanto en clases como en internet esta pensado para el segundo tipo de implementación. Se prefirió la 
 aproximación a clases debido a que era un lenguaje nuevo y la semejanza estructural que tiene Kotlin  con Java hizo
 que fuera mas natural la elección de clases por sobre matrices
->>>>>>> 8d10fd5528b1be16a815aeb9c6acaa2791beee2f
+
 
 Se prefirió crear una neurona desde 0 en vez de reutilizar las que habían sido implementadas previamente por conveniencia,
 ya que había que modificar mucho código para formar una neurona util pensada para la red y modificar los test asociados 
