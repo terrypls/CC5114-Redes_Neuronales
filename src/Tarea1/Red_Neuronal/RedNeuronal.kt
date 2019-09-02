@@ -1,5 +1,6 @@
 package Tarea1.Red_Neuronal
 
+import javax.xml.crypto.Data
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.random.Random
@@ -23,10 +24,19 @@ class RedNeuronal(
 ) {
     internal var valor: MutableList<Double> = mutableListOf()
     private lateinit var capas: Array<CapaNeurona?>
+    //variables para estadisticas de entrenamiento
     var precision: MutableList<Double> = mutableListOf()
+    var calculoErro: MutableList<Double> = mutableListOf()
+
+    //variables para estadisticas de prueba
+    var pruebaPrecision: MutableList<Double> = mutableListOf()
+    var pruebaError: MutableList<Double> = mutableListOf()
+    var recuento: MutableList<Pair<Int, Int>> = mutableListOf()
+
     //lista para almacenar los set de datos suministrados a la red
     internal val data: MutableList<DataSet> = mutableListOf()
-    var eleccion:Int = 0
+    internal val test: MutableList<DataSet> = mutableListOf()
+    var eleccion: Int = 0
 
 
     init {
@@ -40,6 +50,10 @@ class RedNeuronal(
      */
     internal data class DataSet(val inputs: List<Double>, val outputs: List<Double>)
 
+
+    fun agregarTest(inputs: List<Double>, outputs: List<Double>) {
+        test.add(DataSet(inputs, outputs))
+    }
 
     /**
      * metodo para agregar un nuevo set de datos/respuesta para entrenar la red
@@ -60,7 +74,7 @@ class RedNeuronal(
         assert(neuronasPorCapa.last() == salidas) { "Cantidad de neuronas en la salidad no concuerda con el input dado" }
         //crea el arreglo en donde se guardaran las capas
         capas = arrayOfNulls(numeroCapas)
-        capas.withIndex().forEach { (i, capa) ->
+        capas.withIndex().forEach { (i, _) ->
             capas[i] = CapaNeurona(
                 neuronasPorCapa[i],
                 capaPrevia = when {
@@ -77,7 +91,7 @@ class RedNeuronal(
             )
 
         }
-        capas.withIndex().forEach { (i, capa) ->
+        capas.withIndex().forEach { (i, _) ->
             //le dice a cada capa quien es su siguiente
             capas[i]!!.capaSiguiente = when (i) {
                 numeroCapas - 1 -> null
@@ -103,22 +117,42 @@ class RedNeuronal(
     fun entrenarRed(repeticiones: Int) {
         for (i in 0 until repeticiones) {
             var acierto = 0.toDouble()
-
+            var error: Double = .0
             data.shuffle()//desordenamos la lista
             data.forEach { (input, output) ->
                 entrenarRed(input, output)
-
-                if (abs((valor[eleccion] - output[output.indexOf(output.max())]))<0.01) {
-                    acierto++}
+                if (eleccion == output.indexOf(output.max())) acierto++
+                else {
+                    error++
+                }
             }
-
-
-            precision.add(acierto / (data.size * 100))
+            calculoErro.add(error *100/ data.size)
+            precision.add(acierto *100/ (data.size))
         }
-
     }
 
-    fun entrenarRed(inputs: List<Double>, outputs: List<Double>) {
+    fun probarRed(repeticiones: Int) {
+        for (i in 0 until repeticiones) {
+            var acierto = 0.toDouble()
+            var erroractual: Double
+            var error: Double = .0
+            test.shuffle()//desordenamos la lista
+            test.forEach { (inputs, output) ->
+                eleccion = elige(inputs)
+                if (eleccion == output.indexOf(output.max())) acierto++
+                else {
+                    error++
+                }
+                println("$eleccion ${ output.indexOf(output.max())}")
+                recuento.add(Pair(eleccion, output.indexOf(output.max())))
+            }
+            pruebaError.add(error*100 / test.size)
+            pruebaPrecision.add(acierto*100 / (test.size))
+
+        }
+    }
+
+    private fun entrenarRed(inputs: List<Double>, outputs: List<Double>) {
         eleccion = elige(inputs)
         backPropagationError(outputs)
         actualizarPesos(inputs)
@@ -128,7 +162,7 @@ class RedNeuronal(
         capas.first()!!.entrenarCapa(inputs)
     }
 
-    fun backPropagationError(esperado: List<Double>) {
+    private fun backPropagationError(esperado: List<Double>) {
         capas.last()!!.backPropagationError(esperado)
     }
 
