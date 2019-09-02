@@ -40,7 +40,7 @@ que fuera mas natural la elección de clases por sobre matrices.
 Una de las principales dificultades presentadas tuvo relación con la inexperiencia con el lenguaje elegido para
 implementar la tarea y en el hecho de que se prefiriera hacer una implementación en base a clases  en vez de matricial,
  debido a que la mayoría del material disponible, tanto en clases como en internet esta pensado para el segundo tipo de implementación.
-=======
+
 #### Implementacion y dificultades
 Una de las principales dificultades de la implementación tuvo relacion con la inexperiencia con el lenguaje elegido
 y el hecho de que se prefiriera hacer una implementación en base a clases  en vez de matricial, debido a que la mayoría del
