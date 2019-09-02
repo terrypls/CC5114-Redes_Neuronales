@@ -31,7 +31,7 @@ se dividido en 3 clases principales, [Neurona](https://github.com/terrypls/CC511
 La descripción de cada clase y los métodos asociados estan documentados en los archivos correspondientes.
 
 ### Análisis
-#### Implementacion y dificultads
+#### Implementacion y dificultades
 Una de las principales dificultades de la implementación tuvo relacion con la inexperiencia con el lenguaje elegido
 y el hecho de que se prefiriera hacer una implementación en base a clases  en vez de matricial, debido a que la mayoría del
 material disponible, tanto en clases como en internet esta pensado para el segundo tipo de implementación. Se prefirió la 
@@ -75,7 +75,7 @@ Con respecto a los resultados obtenidos del entrenamiento de la red, se puede ap
    
   ![gráfico](/src/Assets/Test.png "Porcentaje de aciertos")
   
-  de donde se obtiene que el porcentaje de aciertos es un poco menor que a la precisión final observada en el gráfico de 
+  De donde se obtiene que el porcentaje de aciertos es un poco menor que a la precisión final observada en el gráfico de 
   aprendizaje
   
  
