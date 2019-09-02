@@ -11,6 +11,9 @@ import org.knowm.xchart.style.Styler.LegendPosition
 import javax.swing.Spring.width
 import javax.swing.Spring.height
 
+/**
+ * usado principalmente para pruebas de funcionalidades de librerias y de kotlin en general
+ */
 
 fun main() {
     val a = Neurona(2)
