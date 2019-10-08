@@ -147,7 +147,7 @@ class ClasificadorIris(val nombreArchivo: String, val numEntrenamientos: Int) {
 
 fun main() {
 
-    val clasificador = ClasificadorIris("Tarea1/DataSet/iris.data", 100)
+    val clasificador = ClasificadorIris("Tarea1/DataSet/iris.data", 1000)
     clasificador.graficar()
     clasificador.pruebas()
 }

@@ -1,5 +1,4 @@
 import Tarea1.Red_Neuronal.Neurona
-import jdk.nashorn.internal.codegen.ObjectClassGenerator.pack
 import org.knowm.xchart.*
 import java.awt.BorderLayout
 import javax.swing.SwingConstants
