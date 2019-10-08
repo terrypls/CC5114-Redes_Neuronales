@@ -138,10 +138,6 @@ class RedNeuronal(
                     error += (eleccion - output.indexOf(output.max())).toDouble().pow(2)
                 }
             }
-            println(error / data.size)
-
-            println(acierto / data.size)
-            println("--------------------------------------------------------------------------------------")
             calculoErro.add(error / data.size * 100)
             precision.add(acierto / data.size * 100)
         }

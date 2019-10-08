@@ -17,10 +17,12 @@ class AGEncontrarPalabra(
     mutacion: Double
 ) : IAlgoritmoGenetico {
     lateinit var poblacion: Array<String>
+    lateinit var estadisticasPoblacion: Array<Int>
     val abecedario: String = "abcdefghijklmnopqrstuvwxyz"
 
     init {
         poblacion = Array(cantPoblacion) { "" }
+        estadisticasPoblacion = Array(cantPoblacion) { 0 }
     }
 
     override fun inicializarPoblacion(cantPoblacion: Int, cantGenes: Int) {
@@ -29,7 +31,7 @@ class AGEncontrarPalabra(
         }
     }
 
-    private fun crearIndividuo(cantGenes: Int): String {
+    fun crearIndividuo(cantGenes: Int): String {
         val individuo = StringBuilder()
 
         for (i in 0 until cantGenes) {
