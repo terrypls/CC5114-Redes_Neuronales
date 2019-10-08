@@ -19,6 +19,7 @@ de [ClasificadorIris.kt]().
 
 
 
+
 ## Tarea 1: Entrenar una red Neuronal
 La tarea 1 consistió en la implementación y testeo de una red neuronal, basadas en las enseñanzas aprendidas en clases.
 Parte de los ejercicios realizados en clases se encuentran en la carpeta [Ejercicios]() entre los que se encuentrar implementaciones
