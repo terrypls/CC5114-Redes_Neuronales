@@ -22,5 +22,11 @@ interface IGen<out Alelo> {
      */
     fun copiarDesdeCharGene(otroGen: CharGen)
 
+    /**
+     * funcion para comparar el contenido de dos genes
+     */
+
+    fun comparar(otroGen: CharGen): Boolean
+
 
 }

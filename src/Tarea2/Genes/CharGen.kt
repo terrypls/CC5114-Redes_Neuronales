@@ -6,9 +6,11 @@ import kotlin.random.Random
  * clase  para la generacion de genes con un char como informacion
  */
 class CharGen : IGen<Char> {
+
+
     override var alelo: Char = ' '
 
-    internal var alfabeto: String
+    private var alfabeto: String
 
     /**
      * crea un gen nuevo aleatorio dado un alfabeto
@@ -39,21 +41,9 @@ class CharGen : IGen<Char> {
         alfabeto = otroGen.alfabeto
     }
 
-    /**
-     * funcion que revisa si dos genes son iguales
-     * @param otroGen gen con el que se comparara si son iguales
-     */
-    override fun equals(otroGen: Any?): Boolean {
-        return otroGen is CharGen && this.alelo == otroGen.alelo && this.alfabeto == otroGen.alfabeto
-    }
 
-    /**
-     * funcion que retorna el hash code de un objeto
-     */
-    override fun hashCode(): Int {
-        var result = alelo.hashCode()
-        result = 31 * result + alfabeto.hashCode()
-        return result
+    override fun comparar(otroGen: CharGen): Boolean {
+        return otroGen.alelo == this.alelo
     }
 
     /**
