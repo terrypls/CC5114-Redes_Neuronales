@@ -42,8 +42,9 @@ class CharGen : IGen<Char> {
     }
 
 
-    override fun comparar(otroGen: CharGen): Boolean {
-        return otroGen.alelo == this.alelo
+    override fun comparar(otroGen: Any): Boolean {
+        val algo: CharGen = otroGen as CharGen
+        return algo.alelo == this.alelo && algo.alfabeto == this.alfabeto
     }
 
     /**
