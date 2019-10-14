@@ -5,8 +5,10 @@ import Tarea2.Genes.IGen
 import kotlin.random.Random
 
 class CharCromosoma : ICromosoma<CharGen> {
+    override var objetivo: Array<CharGen> = emptyArray()
     override var genes: Array<CharGen> = emptyArray()
     private lateinit var alfabeto: String
+
 
     constructor(
         cantGenes: Int,
@@ -24,6 +26,7 @@ class CharCromosoma : ICromosoma<CharGen> {
         this.genes =
             if (genesNuevos != null) Array(cantGenes) { i -> genes[i] }
             else Array(cantGenes) { CharGen(alfabeto) }
+        this.objetivo = Array(stringBuscado.length) { i -> CharGen(alfabeto, stringBuscado[i]) }
     }
 
     override fun mutar(probMutacion: Double) {

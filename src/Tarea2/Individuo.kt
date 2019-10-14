@@ -12,6 +12,7 @@ class Individuo(
 ) {
     var cantGenes: Int = cromosoma.genes.size
     var genesPropios = Array(cantGenes) { i -> cromosoma.genes[i] }
+    var fitness: Int = 0
     /**
      * funcion que tomara los genes de otro individuo y los combinara con el actual para generar
      * variabilidad genetica a partir del gen dado
@@ -22,10 +23,11 @@ class Individuo(
         assert(posicion <= cantGenes) { "la posicion pedida no existe" }
         assert(this.cantGenes == otroIndividuo.cantGenes) { "no tienen el mismo tamaño" }
 
+
     }
 
     fun mutar() {
-
+        cromosoma.mutar(mutacion)
     }
 
     fun charFitness() {

@@ -10,6 +10,7 @@ interface ICromosoma<G : IGen<*>> {
      */
     val genes: Array<G>
 
+    val objetivo: Array<G>
     /**
      * funcion que genera mutacion en un gen aleatorio del cromosoma
      * @param probMutacion probabilidad de mutacion
