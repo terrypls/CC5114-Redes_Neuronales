@@ -14,6 +14,7 @@ class Poblacion(
     private var torneo: Torneo = Torneo()
     private var individuo: Array<Individuo> = emptyArray()
     private var alfabeto = "abcdefghijklmnopqrstuvwxyz"
+    private var binario = "10"
 
     /**
      * funcion creadora de poblaciones de CharCromosomas
