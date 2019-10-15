@@ -32,6 +32,10 @@ class CharGen : IGen<Char> {
         alelo = caracter
     }
 
+    override fun copiarGen(): IGen<*> {
+        return CharGen(alfabeto, alelo)
+    }
+
     override fun copiarA(otroGen: IGen<*>) {
         otroGen.copiarDesdeCharGene(this)
     }

@@ -39,5 +39,14 @@ internal class IndividuoTest {
 
     @Test
     fun charFitness() {
+        val algo = cromosoma.imprimir()
+        val cosa = cromosoma2.imprimir()
+
+        assertEquals(0, individuo.fitness)
+        assertEquals(0, individuo2.fitness)
+        individuo.charFitness()
+        individuo2.charFitness()
+        println("$algo ${individuo.fitness}")
+        println("$cosa ${individuo2.fitness}")
     }
 }

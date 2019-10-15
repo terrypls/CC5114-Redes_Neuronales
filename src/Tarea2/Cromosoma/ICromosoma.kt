@@ -23,4 +23,10 @@ interface ICromosoma<G : IGen<*>> {
      * @param valor valor por el que se cambiara el gen
      */
     fun cambiarGenEn(posicion: Int, valor: Any)
+
+    /**
+     * funcio que crea una copia exacta del cromosoma actual
+     * @return cromosoma del mismo tipo que se copio
+     */
+    fun copiar(): ICromosoma<G>
 }

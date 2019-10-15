@@ -2,6 +2,8 @@ package Tarea2
 
 import Tarea2.Cromosoma.CharCromosoma
 import Tarea2.Cromosoma.ICromosoma
+import Tarea2.Seleccion.Torneo
+import kotlin.random.Random
 
 class Poblacion(
     var cantPoblacion: Int,
@@ -9,6 +11,7 @@ class Poblacion(
     var probMutacion: Double
 ) {
 
+    private var torneo: Torneo = Torneo()
     private var individuo: Array<Individuo> = emptyArray()
     private var alfabeto = "abcdefghijklmnopqrstuvwxyz"
 
@@ -24,5 +27,14 @@ class Poblacion(
         }
     }
 
+    fun evolucionar() {
+        var hijo: MutableList<Individuo> = mutableListOf()
+        while (hijo.size < individuo.size) {
+            var papa = torneo.competir(individuo, 5)
+            var mama = torneo.competir(individuo, 5)
+            var corte = Random.nextInt()
+
+        }
+    }
 
 }

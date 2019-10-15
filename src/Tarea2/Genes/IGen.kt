@@ -28,5 +28,10 @@ interface IGen<out Alelo> {
 
     fun comparar(otroGen: Any): Boolean
 
+    /**
+     * funcion que crea una copia exacta del gen
+     */
+    fun copiarGen(): IGen<*>
+
 
 }
