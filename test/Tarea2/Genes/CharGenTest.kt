@@ -31,8 +31,6 @@ internal class CharGenTest {
 
         assertEquals(alelo1, gen2.alelo)
     }
-
-
     @Test
     fun comparar() {
         assertTrue(genA.comparar(genAA))

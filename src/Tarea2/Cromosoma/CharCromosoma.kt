@@ -2,6 +2,7 @@ package Tarea2.Cromosoma
 
 import Tarea2.Genes.CharGen
 import Tarea2.Genes.IGen
+import java.lang.StringBuilder
 import kotlin.random.Random
 
 class CharCromosoma : ICromosoma<CharGen> {
@@ -48,6 +49,14 @@ class CharCromosoma : ICromosoma<CharGen> {
             }
         }
         return true
+    }
+
+    fun imprimir(): String {
+        val builder = StringBuilder()
+        genes.forEach {
+            builder.append(it.alelo)
+        }
+        return builder.toString()
     }
 
 }
