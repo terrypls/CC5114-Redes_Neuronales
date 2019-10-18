@@ -29,4 +29,16 @@ interface ICromosoma<G : IGen<*>> {
      * @return cromosoma del mismo tipo que se copio
      */
     fun copiar(): ICromosoma<G>
+
+    /**
+     * funcion que retorna la representacion en string del valor del cromosoma
+     */
+    fun imprimir(): String
+
+    /**
+     * funcion que calcula que el fitness de si misma
+     */
+
+    fun fitness(): Int
+
 }

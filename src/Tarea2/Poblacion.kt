@@ -11,31 +11,62 @@ class Poblacion(
     var probMutacion: Double
 ) {
 
+    var best = ""
     private var torneo: Torneo = Torneo()
-    private var individuo: Array<Individuo> = emptyArray()
-    private var alfabeto = "abcdefghijklmnopqrstuvwxyz"
-    private var binario = "10"
+    var individuo: MutableList<Individuo> = mutableListOf()
+
 
     /**
      * funcion creadora de poblaciones de CharCromosomas
      */
-    fun crearPoblacionChar(objetivo: String) {
-        this.individuo = Array(cantPoblacion) {
-            Individuo(
-                CharCromosoma(largoCromosoma, alfabeto, objetivo, null),
-                probMutacion
-            )
+    fun crearPoblacionChar(objetivo: String, alfabeto: String) {
+        individuo = mutableListOf()
+        while (individuo.size < cantPoblacion) {
+            val aux = Individuo(CharCromosoma(largoCromosoma, alfabeto, objetivo, null), probMutacion)
+            aux.charFitness()
+            individuo.add(aux)
         }
     }
 
     fun evolucionar() {
-        var hijo: MutableList<Individuo> = mutableListOf()
-        while (hijo.size < individuo.size) {
-            var papa = torneo.competir(individuo, 5)
-            var mama = torneo.competir(individuo, 5)
-            var corte = Random.nextInt()
+        val hijos: MutableList<Individuo> = mutableListOf()
+        while (hijos.size < individuo.size) {
+            val papa = torneo.competir(individuo, 5)
+            val mama = torneo.competir(individuo, 5)
+            val corte = Random.nextInt(0, largoCromosoma)
+            val hijo1 = papa!!.crossover(mama!!, corte)
+            hijo1.mutar()
 
+            hijos.add(hijo1)
+            val hijo2 = mama.crossover(papa, corte)
+            hijo2.mutar()
+
+            hijos.add(hijo2)
         }
+
+
+        individuo = hijos
+
+        individuo.map { it.charFitness() }
+
+    }
+
+    fun fitness(): Pair<Int, Int> {
+
+        var mejor = 0
+        var peor = largoCromosoma + 5
+
+        individuo.map {
+            if (mejor < it.fitness) {
+                mejor = it.fitness
+                best = it.imprimir()
+            }
+            if (peor > it.fitness) {
+                peor = it.fitness
+            }
+        }
+
+        return Pair(peor, mejor)
     }
 
 }

@@ -43,4 +43,10 @@ internal class CharGenTest {
         genA.cambiarGen('b')
         assertEquals('b', genA.alelo)
     }
+
+    @Test
+    fun copiarGen() {
+        val aux = genA.copiarGen()
+        assertEquals(aux.alelo, genA.alelo)
+    }
 }

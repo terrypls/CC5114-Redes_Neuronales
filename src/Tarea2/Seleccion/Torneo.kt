@@ -13,7 +13,7 @@ class Torneo() {
     /**
      * funcion que dada una cantidad fija de individuos para competir, elige el que tiene mejor fitness
      */
-    fun competir(individuos: Array<Individuo>, cantJugadores: Int): Individuo? {
+    fun competir(individuos: MutableList<Individuo>, cantJugadores: Int): Individuo? {
         var mejor: Individuo? = null
         for (i in 0 until cantJugadores) {
             val jugador = individuos[Random.nextInt(0, individuos.size)]

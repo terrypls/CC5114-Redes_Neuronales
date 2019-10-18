@@ -22,15 +22,15 @@ class Individuo(
     fun crossover(otroIndividuo: Individuo, posicion: Int): Individuo {
         assert(posicion <= cantGenes) { "la posicion pedida no existe" }
         assert(this.cantGenes == otroIndividuo.cantGenes) { "no tienen el mismo tamaño" }
-        val nuevoCromosoma = auxCrossover(otroIndividuo.genesPropios, posicion)
+        val nuevoCromosoma = auxCrossover(otroIndividuo, posicion)
         return Individuo(nuevoCromosoma, mutacion)
     }
 
-    private fun auxCrossover(otroIndividuo: Array<IGen<*>>, posicion: Int): ICromosoma<*> {
+    private fun auxCrossover(otroIndividuo: Individuo, posicion: Int): ICromosoma<*> {
         val cromosomaAux = cromosoma.copiar()
         for (i in 0 until cantGenes) {
             if (i > posicion) {
-                otroIndividuo[i].copiarA(cromosomaAux.genes[i])
+                otroIndividuo.genesPropios[i].copiarA(cromosomaAux.genes[i])
             }
         }
         return cromosomaAux
@@ -40,15 +40,14 @@ class Individuo(
         cromosoma.mutar(mutacion)
     }
 
-    fun charFitness() {
-        var contador = 0
-        for (i in 0 until cantGenes) {
-            if (genesPropios[i].comparar(cromosoma.objetivo[i])) {
-                contador++
-            }
-        }
-        fitness = contador
 
+    fun charFitness() {
+        fitness = cromosoma.fitness()
+
+    }
+
+    fun imprimir(): String {
+        return cromosoma.imprimir()
     }
 
 

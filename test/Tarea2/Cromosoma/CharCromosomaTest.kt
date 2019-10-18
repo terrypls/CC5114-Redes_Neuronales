@@ -1,5 +1,6 @@
 package Tarea2.Cromosoma
 
+import Tarea2.Genes.CharGen
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
@@ -8,11 +9,17 @@ import org.junit.jupiter.api.BeforeEach
 internal class CharCromosomaTest {
     lateinit var cromosoma: CharCromosoma
     lateinit var cromosoma2: CharCromosoma
+    lateinit var cromosoma3: CharCromosoma
     val alfabeto = "abcdefghijklmnopqrstuvwxyz"
     @BeforeEach
     fun setUp() {
         cromosoma = CharCromosoma(5, alfabeto, "bolso", null)
         cromosoma2 = CharCromosoma(5, alfabeto, "bolso", null)
+    }
+
+    @Test
+    fun constructor() {
+        cromosoma3 = CharCromosoma(2, alfabeto, "bolso", arrayOf(CharGen("bolso"), CharGen("bolso")))
 
     }
 
@@ -46,6 +53,14 @@ internal class CharCromosomaTest {
         val cosa = cromosoma2.imprimir()
         assertTrue(cromosoma.compararCromosoma(cromosoma))
         assertFalse(cromosoma.compararCromosoma(cromosoma2))
+    }
+
+    @Test
+    fun copiarCromosoa() {
+        val aux = cromosoma.copiar()
+        for (i in cromosoma.genes.indices) {
+            assertEquals(aux.genes[i], cromosoma.genes[i])
+        }
     }
 
 

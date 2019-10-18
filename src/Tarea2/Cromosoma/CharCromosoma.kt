@@ -12,6 +12,7 @@ class CharCromosoma : ICromosoma<CharGen> {
     override var genes: Array<CharGen> = emptyArray()
     private var alfabeto: String
     private var stringObjetivo: String
+    private var cantGenes: Int
 
 
     constructor(
@@ -26,17 +27,18 @@ class CharCromosoma : ICromosoma<CharGen> {
         stringBuscado: String = "",
         genesNuevos: Array<CharGen>?
     ) {
+        this.cantGenes = cantGenes
         this.stringObjetivo = stringBuscado
         this.alfabeto = alfabeto
         this.genes =
-            if (genesNuevos != null) Array(cantGenes) { i -> genes[i] }
-            else Array(cantGenes) { CharGen(alfabeto) }
+            genesNuevos
+                ?: Array(cantGenes) { CharGen(alfabeto) }
         this.objetivo = Array(stringBuscado.length) { i -> CharGen(alfabeto, stringBuscado[i]) }
     }
 
     override fun copiar(): CharCromosoma {
-        val arreglo = Array(genes.size) { i -> genes[i].copiarGen() }
-        return CharCromosoma(genes.size, alfabeto, stringObjetivo, arreglo as Array<CharGen>)
+        val arreglo = Array(cantGenes) { i -> genes[i].copiarGen() as CharGen }
+        return CharCromosoma(cantGenes, alfabeto, stringObjetivo, arreglo)
     }
 
     override fun mutar(probMutacion: Double) {
@@ -60,12 +62,23 @@ class CharCromosoma : ICromosoma<CharGen> {
         return true
     }
 
-    fun imprimir(): String {
+    override fun imprimir(): String {
         val builder = StringBuilder()
         genes.forEach {
             builder.append(it.alelo)
         }
         return builder.toString()
+    }
+
+    
+    override fun fitness(): Int {
+        var contador: Int = 0
+        val palabra = stringObjetivo.toCharArray()
+        for (i in palabra.indices) {
+            if (palabra[i] == genes[i].alelo)
+                contador++
+        }
+        return contador
     }
 
 }
