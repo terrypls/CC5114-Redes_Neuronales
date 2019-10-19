@@ -37,13 +37,18 @@ class CharGen : IGen<Char> {
     }
 
     override fun copiarA(otroGen: IGen<*>) {
-        otroGen.copiarDesdeCharGene(this)
+        otroGen.copiarDesdeCharGen(this)
     }
 
-    override fun copiarDesdeCharGene(otroGen: CharGen) {
+    override fun copiarDesdeCharGen(otroGen: CharGen) {
         alelo = otroGen.alelo
         alfabeto = otroGen.alfabeto
     }
+
+    override fun copiarDesdeMochilaGen(otroGen: MochilaGen) {
+    }
+
+
 
 
     override fun comparar(otroGen: Any): Boolean {

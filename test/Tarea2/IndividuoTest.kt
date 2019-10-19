@@ -44,8 +44,8 @@ internal class IndividuoTest {
 
         assertEquals(0, individuo.fitness)
         assertEquals(0, individuo2.fitness)
-        individuo.charFitness()
-        individuo2.charFitness()
+        individuo.defaultFitness()
+        individuo2.defaultFitness()
         println("$algo ${individuo.fitness}")
         println("$cosa ${individuo2.fitness}")
     }

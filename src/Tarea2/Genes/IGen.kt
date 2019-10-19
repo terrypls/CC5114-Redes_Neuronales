@@ -17,10 +17,16 @@ interface IGen<out Alelo> {
     fun copiarA(otroGen: IGen<*>)
 
     /**
-     * funcion que permite sobreescribir la informacion del gen actual por la de otro gen
+     * funcion que permite sobreescribir la informacion del CharGen actual por la de otro CharGen
      * @param otroGen el gen que provee la informacion
      */
-    fun copiarDesdeCharGene(otroGen: CharGen)
+    fun copiarDesdeCharGen(otroGen: CharGen)
+
+    /**
+     * funcion que permite sobreescribir informacion del MochilaGen actual por la de otro MochilaGen
+     * @param otroGen el que provee la informacion
+     */
+    fun copiarDesdeMochilaGen(otroGen: MochilaGen)
 
     /**
      * funcion para comparar el contenido de dos genes

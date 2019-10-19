@@ -1,7 +1,7 @@
 package Tarea2
 
 import Tarea2.Cromosoma.CharCromosoma
-import Tarea2.Cromosoma.ICromosoma
+import Tarea2.Cromosoma.MochilaCromosoma
 import Tarea2.Seleccion.Torneo
 import kotlin.random.Random
 
@@ -11,6 +11,8 @@ class Poblacion(
     var probMutacion: Double
 ) {
 
+    var mejor = 0
+    var peor = largoCromosoma + 10
     var best = ""
     private var torneo: Torneo = Torneo()
     var individuo: MutableList<Individuo> = mutableListOf()
@@ -23,11 +25,26 @@ class Poblacion(
         individuo = mutableListOf()
         while (individuo.size < cantPoblacion) {
             val aux = Individuo(CharCromosoma(largoCromosoma, alfabeto, objetivo, null), probMutacion)
-            aux.charFitness()
+            aux.defaultFitness()
             individuo.add(aux)
         }
     }
 
+    fun crearPoblacionMochila(objetivo: Int, pesoMaximo: Int, opciones: Array<Pair<Int, Int>>) {
+        individuo = mutableListOf()
+        while (individuo.size < cantPoblacion) {
+            val aux = Individuo(
+                MochilaCromosoma(largoCromosoma, opciones, objetivo, pesoMaximo, null),
+                probMutacion
+            )
+            aux.defaultFitness()
+            individuo.add(aux)
+        }
+    }
+
+    /**
+     * funcion para realizar la evolucion de los individuos de la poblacion
+     */
     fun evolucionar() {
         val hijos: MutableList<Individuo> = mutableListOf()
         while (hijos.size < individuo.size) {
@@ -43,18 +60,17 @@ class Poblacion(
 
             hijos.add(hijo2)
         }
-
-
         individuo = hijos
-
-        individuo.map { it.charFitness() }
-
+        individuo.map { it.defaultFitness() }
     }
 
+    /**
+     * funcion que obteniene el mejor y peor fitness de la lista de hijos
+     */
     fun fitness(): Pair<Int, Int> {
 
-        var mejor = 0
-        var peor = largoCromosoma + 5
+        mejor = 0
+        peor = largoCromosoma + 5
 
         individuo.map {
             if (mejor < it.fitness) {

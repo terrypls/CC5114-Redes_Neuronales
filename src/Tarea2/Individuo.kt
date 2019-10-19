@@ -26,6 +26,11 @@ class Individuo(
         return Individuo(nuevoCromosoma, mutacion)
     }
 
+    /**
+     * funcion auxiliar a cargo de realizar formalmente el crossover
+     *  @param otroIndividuo individuo con el que se realizara el crossover
+     *  @param posicion lugar desde el cual se intercambiaran los cromosomas
+     */
     private fun auxCrossover(otroIndividuo: Individuo, posicion: Int): ICromosoma<*> {
         val cromosomaAux = cromosoma.copiar()
         for (i in 0 until cantGenes) {
@@ -36,14 +41,19 @@ class Individuo(
         return cromosomaAux
     }
 
+    /**
+     * funcion que genera la mutacion en los genes
+     */
     fun mutar() {
         cromosoma.mutar(mutacion)
     }
 
 
-    fun charFitness() {
+    /**
+     * funcion que acutaliza el valor de fitness del individuo
+     */
+    fun defaultFitness() {
         fitness = cromosoma.fitness()
-
     }
 
     fun imprimir(): String {

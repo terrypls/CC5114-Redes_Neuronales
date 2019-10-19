@@ -70,7 +70,7 @@ class CharCromosoma : ICromosoma<CharGen> {
         return builder.toString()
     }
 
-    
+
     override fun fitness(): Int {
         var contador: Int = 0
         val palabra = stringObjetivo.toCharArray()
