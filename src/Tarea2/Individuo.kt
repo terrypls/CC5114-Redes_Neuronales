@@ -55,6 +55,7 @@ class Individuo(
         fitness = cromosoma.fitness()
     }
 
+
     fun imprimir(): String {
         return cromosoma.imprimir()
     }

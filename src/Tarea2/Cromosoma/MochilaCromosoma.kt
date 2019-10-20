@@ -70,7 +70,8 @@ class MochilaCromosoma : ICromosoma<MochilaGen> {
         valor = 0
         genes.forEach {
             pesos += it.alelo.first
-            valor *= it.alelo.second
+            valor += it.alelo.second
+
         }
         return when {
             pesos > pesoMaximo -> 0

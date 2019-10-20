@@ -11,6 +11,7 @@ class Poblacion(
     var probMutacion: Double
 ) {
 
+
     var estadisticas: MutableList<Array<Double>> = mutableListOf()
     var mejor = 0
     var peor = largoCromosoma + 10
@@ -78,11 +79,12 @@ class Poblacion(
             promedio += it.fitness
             if (mejor < it.fitness) {
                 mejor = it.fitness
-                best = it.imprimir()
+
             }
             if (peor > it.fitness) {
                 peor = it.fitness
             }
+            best = it.imprimir()
         }
         estadisticas.add(arrayOf(peor.toDouble(), mejor.toDouble(), promedio.toDouble() / cantPoblacion))
 

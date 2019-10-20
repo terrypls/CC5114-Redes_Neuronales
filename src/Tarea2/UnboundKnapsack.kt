@@ -12,13 +12,14 @@ class UnboundKnapsack {
         val poblacion = Poblacion(cantPoblacion, largoCromosoma, .6)
         poblacion.crearPoblacionMochila(objetivo, pesoMaximo, opciones)
         var valores = poblacion.fitness()
-        while (valores.second != largoCromosoma) {
+        println("empezamos")
+        while (valores.second < objetivo) {
             println("Iteracion: $iteracion Menor: ${valores.first} Mayor: ${valores.second} Palabra: ${poblacion.best}")
             poblacion.evolucionar()
             valores = poblacion.fitness()
             iteracion++
         }
-        //println("Iteracion $iteracion Menor: ${valores.first} Mayor: ${valores.second} Palabra: ${poblacion.best}")
+        println("Iteracion $iteracion Menor: ${valores.first} Mayor: ${valores.second} Palabra: ${poblacion.best}")
     }
 
 }
@@ -35,6 +36,6 @@ fun main() {
     val objetivo = 36
     val pesoMaximo = 15
     val cantPoblacion = 10
-    val largoCromosoma = 15
+    val largoCromosoma = 6
     var yo = UnboundKnapsack().encontrarOptimo(cantPoblacion, largoCromosoma, opciones, objetivo, pesoMaximo)
 }
