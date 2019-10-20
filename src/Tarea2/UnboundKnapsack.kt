@@ -12,13 +12,13 @@ class UnboundKnapsack {
         val poblacion = Poblacion(cantPoblacion, largoCromosoma, .6)
         poblacion.crearPoblacionMochila(objetivo, pesoMaximo, opciones)
         var valores = poblacion.fitness()
-        while (poblacion.fitness().second != largoCromosoma) {
+        while (valores.second != largoCromosoma) {
             println("Iteracion: $iteracion Menor: ${valores.first} Mayor: ${valores.second} Palabra: ${poblacion.best}")
             poblacion.evolucionar()
             valores = poblacion.fitness()
             iteracion++
         }
-        println("Iteracion $iteracion Menor: ${valores.first} Mayor: ${valores.second} Palabra: ${poblacion.best}")
+        //println("Iteracion $iteracion Menor: ${valores.first} Mayor: ${valores.second} Palabra: ${poblacion.best}")
     }
 
 }

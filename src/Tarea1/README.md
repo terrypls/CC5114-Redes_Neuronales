@@ -71,7 +71,7 @@ de la red, en donde se iteró 10 veces sobre los datos
 
 Con respecto a los resultados obtenidos del entrenamiento de la red, se puede apreciar en la imagen:
  
- ![imagen](/src/Assets/Aprendizaje.png "Curva de aprendizaje") 
+ ![imagen](/Assets/Aprendizaje.png "Curva de aprendizaje") 
  
  La red no alcanza a superar el 70% de precisión en sus predicciones, con una variacion aproximada de 5% tanto hacia arriba como hacia abajo para otras 
  ejecuciones del programa. La evolución de la curva lleva a pensar que la neurona paso de predecir bien el resultado del input
@@ -79,14 +79,14 @@ Con respecto a los resultados obtenidos del entrenamiento de la red, se puede ap
  
  El error se calculo usando la fórmula del error cuadrático medio, dando por resultado la siguiente imagen:
  
- ![imagen](/src/Assets/Error.png "Curva de error")
+ ![imagen](/Assets/Error.png "Curva de error")
   
  Es aquí donde se nota un error grande dentro de las primeras iteracion,
  para luego ir dando paso a un error consistente con la precisión expuesta en la imagen de la curva de precisión
  
  Para las pruebas con los datos restantes, se obtuvo el siguiente gráfico:
    
-  ![gráfico](/src/Assets/Test.png "Porcentaje de aciertos")
+  ![gráfico](/Assets/Test.png "Porcentaje de aciertos")
   
   De donde se obtiene que el porcentaje de aciertos es un poco menor que a la precisión final observada en el gráfico de 
   aprendizaje

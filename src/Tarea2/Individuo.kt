@@ -48,7 +48,6 @@ class Individuo(
         cromosoma.mutar(mutacion)
     }
 
-
     /**
      * funcion que acutaliza el valor de fitness del individuo
      */

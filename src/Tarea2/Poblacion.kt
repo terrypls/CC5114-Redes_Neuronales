@@ -11,8 +11,10 @@ class Poblacion(
     var probMutacion: Double
 ) {
 
+    var estadisticas: MutableList<Array<Double>> = mutableListOf()
     var mejor = 0
     var peor = largoCromosoma + 10
+    var promedio = 0
     var best = ""
     private var torneo: Torneo = Torneo()
     var individuo: MutableList<Individuo> = mutableListOf()
@@ -68,11 +70,12 @@ class Poblacion(
      * funcion que obteniene el mejor y peor fitness de la lista de hijos
      */
     fun fitness(): Pair<Int, Int> {
-
+        promedio = 0
         mejor = 0
         peor = largoCromosoma + 5
 
         individuo.map {
+            promedio += it.fitness
             if (mejor < it.fitness) {
                 mejor = it.fitness
                 best = it.imprimir()
@@ -81,6 +84,7 @@ class Poblacion(
                 peor = it.fitness
             }
         }
+        estadisticas.add(arrayOf(peor.toDouble(), mejor.toDouble(), promedio.toDouble() / cantPoblacion))
 
         return Pair(peor, mejor)
     }
