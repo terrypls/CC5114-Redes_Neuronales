@@ -41,7 +41,7 @@ problemas.
 Se opto por analizar los resultados del problema de encontrar la palabra. Se tiene el siguiente grafico a modo de ejemplo 
 para la encontrar la palabra *anitalavalatina* con una poblacion de 10 individuos.
 
- ![imagen](Tarea2/Assets/char.png "Minimo, maximo y promedio de evolucion del algoritmo")
+ ![imagen](/src/Tarea2/Assets/char.png "Minimo, maximo y promedio de evolucion del algoritmo")
  
  Se observa que la distancia entre las 3 curvas se mantiene bastante pareja a lo largo de las 
  generacions. Al no tener otra implementacion de este algoritmo en particular para comparar la eficiencia
