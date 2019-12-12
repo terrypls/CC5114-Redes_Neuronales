@@ -13,9 +13,10 @@ fun funArgsCount(aFun: Function<Any>): Int {
  * clase base para todos los nodos que usaran el GP
  */
 open class Nodo(
-    var operacion: ((Nodo, Nodo) -> Int)?
+    var operacion: ((Nodo, Nodo) -> Int)?,
+    var profundidad: Int? = 0
 ) {
-    var serializable: MutableList<Nodo> = mutableListOf()
+
     var argumentos: MutableList<Nodo> = mutableListOf<Nodo>() // lista para guardar referencias a los hijos
     open var numArgumentos = when (operacion) {
         null -> 0
@@ -32,13 +33,14 @@ open class Nodo(
         return this.operacion!!(argumentos.first(), argumentos.last())
     }
 
-    fun serializar(): MutableList<Any> {
-        val list: MutableList<Any> = mutableListOf(this)
+    fun serializar(): MutableList<Nodo> {
+        val list: MutableList<Nodo> = mutableListOf(this)
         for (node in this.argumentos) {
             list.addAll(node.serializar())
         }
         return list
     }
+
     fun copiar(): Nodo {
         val aNodo = Nodo(this.operacion)
         aNodo.argumentos = this.argumentos

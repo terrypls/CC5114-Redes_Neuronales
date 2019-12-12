@@ -15,6 +15,13 @@ import javax.swing.Spring.height
  */
 
 fun main() {
+
+    val lista: MutableList<Int> = mutableListOf(1, 2, 3, 6, 8)
+    val lista2: MutableList<Int> = mutableListOf(3, 4, 5)
+    val joinde = lista.union(lista2)
+    println(joinde)
+
+    /*
     val a = Neurona(2)
     val b = Neurona(2)
     val c = Neurona(2)
@@ -25,7 +32,7 @@ fun main() {
         it.entrenar(d)
     }
     println("pesos de cada neurona iniciales ${a.pesos},${b.pesos},${c.pesos}")
-
+*/
 /*
 // Create Chart
     val chart = XYChartBuilder().width(600).height(400).title("Area Chart").xAxisTitle("X").yAxisTitle("Y").build()
@@ -62,5 +69,29 @@ fun main() {
         frame.isVisible = true
     }*/
 
+
+}
+
+class Config {
+
+    var count = 0;
+
+    operator fun invoke(): Config {
+
+        count++
+
+        return this
+
+    }
+
+}
+
+fun main(args: Array<String>) {
+
+    val config = Config()
+
+    config()()()()()()()()()()
+
+    println("config was called ${config.count} times")
 
 }

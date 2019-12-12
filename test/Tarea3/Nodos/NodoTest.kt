@@ -25,6 +25,7 @@ internal class NodoTest {
         segundo = Nodo(::Suma.invoke(dummy, dummy))
         tercero = Nodo(::Suma.invoke(dummy, dummy))
 
+
     }
 
     @Test
@@ -50,12 +51,14 @@ internal class NodoTest {
         segundo.argumentos.add(terminal7)
         tercero.argumentos.add(terminal)
         tercero.argumentos.add(terminal1)
+
         assertEquals(2, primero.argumentos.size)
         val lista = mutableListOf<Nodo>(primero, terminal, terminal1)
         val lista2 = primero.serializar()
         val lista3 = segundo.serializar()
         assertEquals(5, lista3.size)
         assertEquals(3, lista2.size)
+        println(primero.operacion)
     }
 
     @Test
@@ -77,6 +80,7 @@ internal class NodoTest {
         segundo.argumentos.add(terminal7)
         tercero.argumentos.add(terminal)
         tercero.argumentos.add(terminal1)
+        println(segundo.operacion)
         assertEquals(3, primero.serializar().size)
         primero.reemplazar(segundo)
         assertEquals(5, primero.serializar().size)

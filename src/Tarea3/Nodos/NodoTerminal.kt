@@ -3,8 +3,9 @@ package Tarea3.Nodos
 
 class NodoTerminal(
 
-    val valor: Int
-) : Nodo(null) {
+    val valor: Int,
+    private val profundo: Int? = 0
+) : Nodo(null, profundidad = profundo) {
 
     override fun eval(): Int {
         return valor

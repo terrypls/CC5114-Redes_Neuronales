@@ -3,8 +3,9 @@ package Tarea3.Nodos
 open class NodoBinario(
     operacion: (Nodo, Nodo) -> Int,
     var nodoIzq: Nodo,
-    var nodoDer: Nodo
-) : Nodo(operacion = operacion) {
+    var nodoDer: Nodo,
+    private val profundida: Int? = 0
+) : Nodo(operacion = operacion, profundidad = profundida) {
     override var numArgumentos = 2
 
     init {
