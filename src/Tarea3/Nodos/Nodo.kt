@@ -18,7 +18,7 @@ open class Nodo(
     var argumentos: MutableList<Nodo> = mutableListOf<Nodo>() // lista para guardar referencias a los hijos
     open var numArgumentos = when (operacion) {
         null -> 0
-        else -> funArgsCount(operacion!!)
+        else -> 2
     }
 
     open fun eval(): Int {

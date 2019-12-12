@@ -2,7 +2,7 @@ package Tarea3.Nodos
 
 
 class NodoTerminal(
-    padre: Nodo? = null,
+
     val valor: Int
 ) : Nodo(null) {
 
