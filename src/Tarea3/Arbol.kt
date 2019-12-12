@@ -10,22 +10,23 @@ class Arbol(
     val valoresTerminal: MutableList<Int>,
     val probTerminal: Double = 0.25
 ) {
-
-    fun crearArbol(profundidad: Int): Nodo {
-        when {
-            profundidad > 0 -> {
-                val operando = operaciones.random()
-                val hijos: Array<Nodo> = Array(2) {
-                    when (nextDouble() < probTerminal) {
-                        true -> crearArbol(0)
-                        false -> crearArbol(profundidad - 1)
+    fun invoke(maxProfundida: Int): Nodo {
+        fun crearArbol(profundidad: Int): Nodo {
+            when {
+                profundidad > 0 -> {
+                    val operando = operaciones.random()
+                    val hijos: Array<Nodo> = Array(2) {
+                        when (nextDouble() < probTerminal) {
+                            true -> crearArbol(0)
+                            false -> crearArbol(profundidad - 1)
+                        }
                     }
+                    return NodoBinario(operando, hijos.first(), hijos.last())
                 }
-                return NodoBinario(operando, hijos.first(), hijos.last())
+                else -> return NodoTerminal(valor = valoresTerminal.random())
             }
-            else -> return NodoTerminal(valor = valoresTerminal.random())
         }
+        return crearArbol(maxProfundida)
+
     }
-
-
 }
