@@ -15,12 +15,17 @@ fun funArgsCount(aFun: Function<Any>): Int {
 open class Nodo(
     var operacion: ((Nodo, Nodo) -> Int)?
 ) {
+    var serializable: MutableList<Nodo> = mutableListOf()
     var argumentos: MutableList<Nodo> = mutableListOf<Nodo>() // lista para guardar referencias a los hijos
     open var numArgumentos = when (operacion) {
         null -> 0
-        else -> 2
+        else -> 2 // todos los nodos son binarios
     }
 
+    /**
+     * metodo recursivo que evalua el nodo en base a la funcion provista
+     * @return el resultado de la evaluacion
+     */
     open fun eval(): Int {
         assert(argumentos.size == numArgumentos) { "there is something bad, harry" }
         assert(operacion != null) { "llego un null aqui" }
@@ -28,13 +33,12 @@ open class Nodo(
     }
 
     fun serializar(): MutableList<Any> {
-        val lista: MutableList<Any> = mutableListOf(this)
-        this.argumentos.map {
-            lista.add(it.serializar())
+        val list: MutableList<Any> = mutableListOf(this)
+        for (node in this.argumentos) {
+            list.addAll(node.serializar())
         }
-        return lista
+        return list
     }
-
     fun copiar(): Nodo {
         val aNodo = Nodo(this.operacion)
         aNodo.argumentos = this.argumentos
