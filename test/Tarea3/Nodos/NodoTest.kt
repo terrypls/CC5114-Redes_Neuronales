@@ -21,9 +21,9 @@ internal class NodoTest {
         terminal = NodoTerminal(4)
         terminal1 = NodoTerminal(5)
         terminal7 = NodoTerminal(7)
-        primero = Nodo(::Suma.invoke(dummy, dummy))
-        segundo = Nodo(::Suma.invoke(dummy, dummy))
-        tercero = Nodo(::Suma.invoke(dummy, dummy))
+        primero = Nodo(Suma())
+        segundo = Nodo(Suma())
+        tercero = Nodo(Suma())
 
 
     }
@@ -58,7 +58,7 @@ internal class NodoTest {
         val lista3 = segundo.serializar()
         assertEquals(5, lista3.size)
         assertEquals(3, lista2.size)
-        println(primero.operacion)
+
     }
 
     @Test
@@ -68,7 +68,9 @@ internal class NodoTest {
 
         val nodo: Nodo = primero.copiar()
 
-        assertEquals(nodo.argumentos, primero.argumentos)
+        for (i in nodo.argumentos.indices) {
+            assertEquals(nodo.argumentos[i].eval(), primero.argumentos[i].eval())
+        }
         assertEquals(nodo.operacion, primero.operacion)
     }
 
@@ -80,7 +82,7 @@ internal class NodoTest {
         segundo.argumentos.add(terminal7)
         tercero.argumentos.add(terminal)
         tercero.argumentos.add(terminal1)
-        println(segundo.operacion.toString())
+
 
         assertEquals(3, primero.serializar().size)
         primero.reemplazar(segundo)

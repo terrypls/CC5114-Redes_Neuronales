@@ -14,7 +14,7 @@ internal class ArbolTest {
     fun setUp() {
         val dummy = NodoTerminal(1)
         val funcionesActivacion: MutableList<(Nodo, Nodo) -> Int> =
-            mutableListOf(Suma(dummy, dummy), Resta(dummy, dummy), Multi(dummy, dummy))
+            mutableListOf(Suma(), Resta(dummy, dummy), Multi(dummy, dummy))
         val valores = mutableListOf(1, 3, 4, 5)
         val ast = AST(funcionesActivacion, valores)
         Arbol = Arbol(ast, fun(a: Nodo) = a.eval().toDouble(), 10)
