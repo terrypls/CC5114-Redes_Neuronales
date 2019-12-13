@@ -24,8 +24,10 @@ class Arbol(
     }
     var fitness: Double = Double.MAX_VALUE
     var nodos: MutableList<Nodo> = mutableListOf()
+    var evaluacion: Int = 0
 
     init {
+        evaluacion = this.eval()
         nodos = raiz.serializar()
     }
 
@@ -45,8 +47,8 @@ class Arbol(
         val papa: Nodo = this.raiz.copiar()
         val posicion: Nodo = papa.serializar().random()
         var hijo: Nodo? = null
-        do hijo = otroArbol.nodos.random()
-        while (hijo!!.profundidad!! > posicion.profundidad!!)
+        do hijo = otroArbol.nodos.random().copiar()
+        while (hijo!!.profundidad > posicion.profundidad)
         posicion.reemplazar(hijo)
         return Arbol(generador, funcionFitness, profundidad, papa)
 
@@ -62,7 +64,7 @@ class Arbol(
             val arbolaux: Nodo = Arbol(
                 generador,
                 funcionFitness,
-                nextInt(nodoAux.profundidad!!)
+                nextInt(nodoAux.profundidad)
             ).raiz
             nodoAux.reemplazar(arbolaux)
             nodos = this.raiz.serializar()
@@ -70,8 +72,13 @@ class Arbol(
 
     }
 
+    fun eval(): Int {
+        actualizarFitnesss()
+        return raiz.eval()
+    }
+
     fun actualizarFitnesss() {
-        fitness = funcionFitness(this.raiz)
+        fitness = funcionFitness(raiz)
     }
 
     /**
@@ -83,5 +90,9 @@ class Arbol(
             fitness > other.fitness -> 1
             else -> -1
         }
+    }
+
+    override fun toString(): String {
+        return raiz.toString()
     }
 }

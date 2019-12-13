@@ -17,7 +17,7 @@ class Bosque(
 ) {
     var historial: MutableList<Array<Double>> = mutableListOf()
     private var generador: AST = AST(operaciones, valoresTerminal) //generador de arboles
-    private var arboles: MutableList<Arbol> = mutableListOf()//donde se guardan referencias a los arboles del bosque
+    var arboles: MutableList<Arbol> = mutableListOf()//donde se guardan referencias a los arboles del bosque
 
     init {
         for (i in 0 until cantArboles) {
@@ -35,6 +35,7 @@ class Bosque(
         while (hijos.size < arboles.size) {
             val papa = competenciaArboles(arboles.random(), arboles.random())
             val mama = competenciaArboles(arboles.random(), arboles.random())
+
             val hijo1 = papa.crossover(mama)
             val hijo2 = mama.crossover(papa)
 
@@ -55,8 +56,8 @@ class Bosque(
      */
     fun competenciaArboles(a: Arbol, b: Arbol): Arbol {
         return when (a.compareTo(b)) {
-            1 -> a
-            -1 -> b
+            1 -> b
+            -1 -> a
             else -> listOf(a, b).random()
 
         }

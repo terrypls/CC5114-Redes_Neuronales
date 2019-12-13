@@ -12,21 +12,21 @@ class Suma : (Nodo, Nodo) -> Int {
         return a.eval() + b.eval()
     }
 
-    override fun toString(): String = "${this.a.eval().toString()} + ${this.b.eval().toString()}"
+    override fun toString(): String = "+"
 }
 
 class Resta : (Nodo, Nodo) -> Int {
     lateinit var a: Nodo
     lateinit var b: Nodo
     override fun invoke(a: Nodo, b: Nodo): Int = a.eval() - b.eval()
-    override fun toString(): String = "${this.a.eval().toString()} - ${this.b.eval().toString()}"
+    override fun toString(): String = "-"
 }
 
 class Multi : (Nodo, Nodo) -> Int {
     lateinit var a: Nodo
     lateinit var b: Nodo
     override fun invoke(a: Nodo, b: Nodo): Int = a.eval() * b.eval()
-    override fun toString(): String = "${this.a.eval().toString()} * ${this.b.eval().toString()}"
+    override fun toString(): String = "*"
 }
 
 class Div : (Nodo, Nodo) -> Int {
@@ -39,12 +39,12 @@ class Div : (Nodo, Nodo) -> Int {
         }
     }
 
-    override fun toString(): String = "${this.a.eval().toString()} / ${this.b.eval().toString()}"
+    override fun toString(): String = "/"
 }
 
 class Max : (Nodo, Nodo) -> Int {
     lateinit var a: Nodo
     lateinit var b: Nodo
     override fun invoke(a: Nodo, b: Nodo): Int = max(a.eval(), b.eval())
-    override fun toString(): String = " max (${this.a.eval().toString()}, ${this.b.eval().toString()})"
+    override fun toString(): String = "max"
 }

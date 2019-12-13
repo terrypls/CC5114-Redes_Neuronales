@@ -7,7 +7,7 @@ open class NodoBinario(
     operacion: (Nodo, Nodo) -> Int,
     var nodoIzq: Nodo,
     var nodoDer: Nodo,
-    private val profundida: Int? = 0
+    private val profundida: Int
 ) : Nodo(operacion = operacion, profundidad = profundida) {
     override var numArgumentos = 2
 
@@ -17,7 +17,8 @@ open class NodoBinario(
     }
 
     override fun toString(): String {
-        return operacion.toString()
+        return "(${operacion.toString()} $nodoIzq $nodoDer)"
     }
+
 
 }
