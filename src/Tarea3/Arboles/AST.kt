@@ -1,4 +1,4 @@
-package Tarea3
+package Tarea3.Arboles
 
 import Tarea3.Nodos.Nodo
 import Tarea3.Nodos.NodoBinario

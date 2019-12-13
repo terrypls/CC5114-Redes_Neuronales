@@ -1,8 +1,7 @@
-package Tarea3
+package Tarea3.Arboles
 
 import Tarea3.Nodos.Nodo
 import kotlin.random.Random
-import kotlin.random.Random.Default.nextInt
 
 /**
  * clase simil a individuo de la tarea 2, encargada de manejar las operaciones sobre los arboles
