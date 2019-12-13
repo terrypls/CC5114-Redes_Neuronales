@@ -1,5 +1,8 @@
 package Tarea3.Nodos
 
+/**
+ * nodo que representa un nodo binario, con referencias a sus hijos izquierdo y derecho
+ */
 open class NodoBinario(
     operacion: (Nodo, Nodo) -> Int,
     var nodoIzq: Nodo,

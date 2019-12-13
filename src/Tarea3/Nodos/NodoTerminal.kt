@@ -1,6 +1,9 @@
 package Tarea3.Nodos
 
 
+/**
+ * clase que representa un nodo terminal(hoja)
+ */
 class NodoTerminal(
 
     val valor: Int,

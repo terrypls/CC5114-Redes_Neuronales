@@ -16,7 +16,6 @@ open class Nodo(
     var operacion: ((Nodo, Nodo) -> Int)?,
     var profundidad: Int? = 0
 ) {
-
     var argumentos: MutableList<Nodo> = mutableListOf<Nodo>() // lista para guardar referencias a los hijos
     open var numArgumentos = when (operacion) {
         null -> 0
@@ -33,6 +32,10 @@ open class Nodo(
         return this.operacion!!(argumentos.first(), argumentos.last())
     }
 
+    /**
+     * metodo recursivo que mete en una lista todos los elementos que cuelgan del nodo, para facilitar su manejo posterior
+     * @return lista con los nodos
+     */
     fun serializar(): MutableList<Nodo> {
         val list: MutableList<Nodo> = mutableListOf(this)
         for (node in this.argumentos) {
@@ -41,6 +44,10 @@ open class Nodo(
         return list
     }
 
+    /**
+     * metodo que permite crear una copia del nodo y sus dependencias
+     * @return la copia del nodo que llamo a la funcion
+     */
     open fun copiar(): Nodo {
         val aNodo = Nodo(this.operacion, profundidad)
         aNodo.argumentos = mutableListOf()
@@ -48,10 +55,15 @@ open class Nodo(
         return aNodo
     }
 
+    /**
+     * metodo para reemplazar la informacion de un nodo particular, sin que el padre pierda la referencia a el
+     * @param otroNodo el nodo que se usara para reemplazar la informacion
+     */
     fun reemplazar(otroNodo: Nodo) {
         this.operacion = otroNodo.operacion
         this.argumentos = otroNodo.argumentos
         this.numArgumentos = otroNodo.numArgumentos
+        this.profundidad = otroNodo.profundidad
 
     }
 

@@ -17,7 +17,7 @@ internal class ArbolTest {
             mutableListOf(Suma(dummy, dummy), Resta(dummy, dummy), Multi(dummy, dummy))
         val valores = mutableListOf(1, 3, 4, 5)
         val ast = AST(funcionesActivacion, valores)
-        Arbol = Arbol(ast, 10)
+        Arbol = Arbol(ast, fun(a: Nodo) = a.eval().toDouble(), 10)
 
     }
 
