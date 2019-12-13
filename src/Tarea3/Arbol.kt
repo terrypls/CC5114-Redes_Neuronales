@@ -1,6 +1,7 @@
 package Tarea3
 
 import Tarea3.Nodos.Nodo
+import kotlin.random.Random
 import kotlin.random.Random.Default.nextInt
 
 /**
@@ -56,14 +57,17 @@ class Arbol(
      * @param prob probabilidad de generar la mutacion
      */
     fun mutar(prob: Double) {
-        val nodoAux: Nodo = nodos.random()
-        val arbolaux: Nodo = Arbol(
-            generador,
-            funcionFitness,
-            nextInt(nodoAux.profundidad!!)
-        ).raiz
-        nodoAux.reemplazar(arbolaux)
-        nodos = this.raiz.serializar()
+        if (Random.nextDouble() < prob) {
+            val nodoAux: Nodo = nodos.random()
+            val arbolaux: Nodo = Arbol(
+                generador,
+                funcionFitness,
+                nextInt(nodoAux.profundidad!!)
+            ).raiz
+            nodoAux.reemplazar(arbolaux)
+            nodos = this.raiz.serializar()
+        }
+
     }
 
     fun actualizarFitnesss() {
