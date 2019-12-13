@@ -1,7 +1,6 @@
 package Tarea3
 
 import Tarea3.Nodos.Nodo
-import com.sun.security.auth.NTDomainPrincipal
 
 /**
  * clase simil a la poblacion de la tarea 2, se encarga del set de individuos(arboles) del algoritmo
@@ -13,7 +12,7 @@ class Bosque(
     val operaciones: MutableList<(Nodo, Nodo) -> Int>,
     val valoresTerminal: MutableList<Int>,
     val cantArboles: Int,
-    val probMutcion: Double
+    val probMutacion: Double
 ) {
 
     private var generador: AST = AST(operaciones, valoresTerminal) //generador de arboles
@@ -38,8 +37,8 @@ class Bosque(
             val hijo1 = papa.crossover(mama)
             val hijo2 = mama.crossover(papa)
 
-            hijo1.mutar(probMutcion)
-            hijo2.mutar(probMutcion)
+            hijo1.mutar(probMutacion)
+            hijo2.mutar(probMutacion)
             hijos.add(hijo1)
             hijos.add(hijo2)
         }
