@@ -11,6 +11,10 @@ class NodoTerminal(
         return valor
     }
 
+    override fun copiar(): Nodo {
+        return NodoTerminal(valor)
+    }
+
     override fun toString(): String {
         return this.valor.toString()
     }

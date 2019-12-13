@@ -41,9 +41,10 @@ open class Nodo(
         return list
     }
 
-    fun copiar(): Nodo {
-        val aNodo = Nodo(this.operacion)
-        aNodo.argumentos = this.argumentos
+    open fun copiar(): Nodo {
+        val aNodo = Nodo(this.operacion, profundidad)
+        aNodo.argumentos = mutableListOf()
+        this.argumentos.forEach { aNodo.argumentos.add(it.copiar()) }
         return aNodo
     }
 

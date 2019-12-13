@@ -5,17 +5,17 @@ import kotlin.math.max
 
 class Suma(val a: Nodo, val b: Nodo) : (Nodo, Nodo) -> Int {
     override fun invoke(a: Nodo, b: Nodo): Int = a.eval() + b.eval()
-    override fun toString(): String = "${this.a} + ${this.b}"
+    override fun toString(): String = "${this.a.eval().toString()} + ${this.b.eval().toString()}"
 }
 
 class Resta(val a: Nodo, val b: Nodo) : (Nodo, Nodo) -> Int {
     override fun invoke(a: Nodo, b: Nodo): Int = a.eval() - b.eval()
-    override fun toString(): String = "${this.a} - ${this.b}"
+    override fun toString(): String = "${this.a.eval().toString()} - ${this.b.eval().toString()}"
 }
 
 class Multi(val a: Nodo, val b: Nodo) : (Nodo, Nodo) -> Int {
     override fun invoke(a: Nodo, b: Nodo): Int = a.eval() * b.eval()
-    override fun toString(): String = "${this.a} * ${this.b}"
+    override fun toString(): String = "${this.a.eval().toString()} * ${this.b.eval().toString()}"
 }
 
 class Div(val a: Nodo, val b: Nodo) : (Nodo, Nodo) -> Int {
@@ -26,10 +26,10 @@ class Div(val a: Nodo, val b: Nodo) : (Nodo, Nodo) -> Int {
         }
     }
 
-    override fun toString(): String = "${this.a} / ${this.b}"
+    override fun toString(): String = "${this.a.eval().toString()} / ${this.b.eval().toString()}"
 }
 
 class Max(val a: Nodo, val b: Nodo) : (Nodo, Nodo) -> Int {
     override fun invoke(a: Nodo, b: Nodo): Int = max(a.eval(), b.eval())
-    override fun toString(): String = "${this.a} + ${this.b}"
+    override fun toString(): String = "${this.a.eval().toString()} + ${this.b.eval().toString()}"
 }

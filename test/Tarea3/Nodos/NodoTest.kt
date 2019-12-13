@@ -80,7 +80,8 @@ internal class NodoTest {
         segundo.argumentos.add(terminal7)
         tercero.argumentos.add(terminal)
         tercero.argumentos.add(terminal1)
-        println(segundo.operacion)
+        println(segundo.operacion.toString())
+
         assertEquals(3, primero.serializar().size)
         primero.reemplazar(segundo)
         assertEquals(5, primero.serializar().size)
