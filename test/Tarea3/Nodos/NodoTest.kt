@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Assertions.*
 
 internal class NodoTest {
 
-    var dummy = NodoTerminal(0)
+    var dummy = NodoTerminal(0, 0)
     lateinit var primero: Nodo
     lateinit var segundo: Nodo
     lateinit var tercero: Nodo
@@ -18,12 +18,12 @@ internal class NodoTest {
     @BeforeEach
     fun setUp() {
 
-        terminal = NodoTerminal(4)
-        terminal1 = NodoTerminal(5)
-        terminal7 = NodoTerminal(7)
-        primero = Nodo(Suma())
-        segundo = Nodo(Suma())
-        tercero = Nodo(Suma())
+        terminal = NodoTerminal(4, 3)
+        terminal1 = NodoTerminal(5, 3)
+        terminal7 = NodoTerminal(7, 3)
+        primero = Nodo(Suma(), 1)
+        segundo = Nodo(Suma(), 1)
+        tercero = Nodo(Suma(), 1)
 
 
     }
@@ -65,13 +65,23 @@ internal class NodoTest {
     fun copiar() {
         primero.argumentos.add(terminal)
         primero.argumentos.add(terminal1)
-
         val nodo: Nodo = primero.copiar()
-
         for (i in nodo.argumentos.indices) {
             assertEquals(nodo.argumentos[i].eval(), primero.argumentos[i].eval())
         }
         assertEquals(nodo.operacion, primero.operacion)
+
+        segundo.argumentos.add(tercero)
+        segundo.argumentos.add(terminal7)
+        tercero.argumentos.add(terminal)
+        tercero.argumentos.add(terminal1)
+
+        val nodoaux: Nodo = segundo.copiar()
+        val ble = nodoaux.serializar()
+        assertEquals(5, ble.size)
+
+
+
     }
 
     @Test
@@ -89,4 +99,6 @@ internal class NodoTest {
         assertEquals(5, primero.serializar().size)
 
     }
+
+
 }

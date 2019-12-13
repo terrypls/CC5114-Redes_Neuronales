@@ -36,7 +36,7 @@ fun main() {
     algo.encontrarCoso()
 }
 
-class funcionSinLimites() : (Nodo) -> Double {
+class funcionSinLimites : (Nodo) -> Double {
     override fun invoke(p1: Nodo): Double {
         return (65346 - p1.eval()).toDouble()
     }

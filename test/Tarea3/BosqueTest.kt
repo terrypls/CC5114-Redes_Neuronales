@@ -2,17 +2,16 @@ package Tarea3
 
 import Tarea3.Ejercicios.funcionSinLimites
 import Tarea3.Nodos.Nodo
-import Tarea3.Nodos.NodoTerminal
 import org.junit.jupiter.api.BeforeEach
-
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
-internal class ArbolTest {
+import org.junit.jupiter.api.Assertions.*
+
+internal class BosqueTest {
     lateinit var terminales: MutableList<Int>
     lateinit var funciones: MutableList<(Nodo, Nodo) -> Int>
-    lateinit var arbol: Arbol
-    lateinit var otroArbol: Arbol
+    lateinit var bosque: Bosque
+    lateinit var otroBosque: Bosque
     lateinit var generador: AST
     lateinit var funFitness: (Nodo) -> Double
     @BeforeEach
@@ -24,18 +23,24 @@ internal class ArbolTest {
     }
 
     @Test
-    fun creacion() {
-        arbol = Arbol(generador, funFitness, 8)
-        println(arbol.fitness)
-
-
+    fun crear() {
+        bosque = Bosque(funFitness, 7, funciones, terminales, 100, .2)
+        val a = mutableListOf<Int>()
+        bosque.arboles.map {
+            a.add(it.raiz.eval())
+        }
     }
 
     @Test
-    fun comparar() {
-        arbol = Arbol(generador, funFitness, 8)
-        otroArbol = Arbol(generador, funFitness, 8)
-        println("${arbol.fitness} ${otroArbol.fitness}")
-        println(arbol.compareTo(otroArbol))
+    fun evolucionar() {
+        bosque = Bosque(funFitness, 7, funciones, terminales, 100, .2)
+        bosque.evolucionar()
+        bosque.arboles.map {
+            it.raiz.eval()
+        }
+    }
+
+    @Test
+    fun estadisticas() {
     }
 }
