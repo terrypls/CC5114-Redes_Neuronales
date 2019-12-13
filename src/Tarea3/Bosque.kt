@@ -1,6 +1,7 @@
 package Tarea3
 
 import Tarea3.Nodos.Nodo
+import kotlin.math.max
 
 /**
  * clase simil a la poblacion de la tarea 2, se encarga del set de individuos(arboles) del algoritmo
@@ -61,7 +62,7 @@ class Bosque(
         }
     }
 
-    fun estadisticas() {
+    fun estadisticas(): Pair<Double, Double> {
         var minimo: Double = Double.MAX_VALUE
         var maximo: Double = Double.MIN_VALUE
         var promedio: Double = 0.0
@@ -76,5 +77,6 @@ class Bosque(
             }
         }
         historial.add(arrayOf(minimo.toDouble(), maximo.toDouble(), promedio.toDouble() / cantArboles))
+        return Pair(minimo, maximo)
     }
 }
