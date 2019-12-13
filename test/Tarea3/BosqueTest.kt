@@ -17,7 +17,7 @@ internal class BosqueTest {
     @BeforeEach
     fun setUp() {
         terminales = mutableListOf(25, 7, 8, 100, 4, 2)
-        funciones = mutableListOf(Suma(), Resta(), Multi(), Max())
+        funciones = mutableListOf(Suma(), Resta(), Multi())
         generador = AST(funciones, terminales)
         funFitness = funcionSinLimites()
     }
@@ -29,15 +29,18 @@ internal class BosqueTest {
         bosque.arboles.map {
             a.add(it.raiz.eval())
         }
+        println(a)
     }
 
     @Test
     fun evolucionar() {
-        bosque = Bosque(funFitness, 7, funciones, terminales, 100, .2)
+        bosque = Bosque(funFitness, 2, funciones, terminales, 15, .2)
         bosque.evolucionar()
+        val a = mutableListOf<Int>()
         bosque.arboles.map {
-            it.raiz.eval()
+            a.add(it.raiz.eval())
         }
+        println(a)
     }
 
     @Test

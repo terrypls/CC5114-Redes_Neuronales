@@ -10,7 +10,6 @@ open class NodoBinario(
     private val profundida: Int
 ) : Nodo(operacion = operacion, profundidad = profundida) {
     override var numArgumentos = 2
-
     init {
         super.argumentos.add(nodoIzq)
         super.argumentos.add(nodoDer)

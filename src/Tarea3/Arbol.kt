@@ -64,8 +64,9 @@ class Arbol(
             val arbolaux: Nodo = Arbol(
                 generador,
                 funcionFitness,
-                nextInt(nodoAux.profundidad)
+                (0..nodoAux.profundidad).random()
             ).raiz
+
             nodoAux.reemplazar(arbolaux)
             nodos = this.raiz.serializar()
         }

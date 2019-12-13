@@ -14,8 +14,9 @@ fun funArgsCount(aFun: Function<Any>): Int {
  */
 open class Nodo(
     var operacion: ((Nodo, Nodo) -> Int)?,
-    var profundidad: Int
+    var profundidad: Int = 0
 ) {
+    open var valor = 0
     var argumentos: MutableList<Nodo> = mutableListOf<Nodo>() // lista para guardar referencias a los hijos
     open var numArgumentos = when (operacion) {
         null -> 0
@@ -28,10 +29,11 @@ open class Nodo(
      */
     open fun eval(): Int {
         assert(argumentos.size == numArgumentos) { "there is something bad, harry" }
-        assert(operacion != null) { "llego un null aqui" }
-
-
-        return this.operacion!!(argumentos.first(), argumentos.last())
+        when {
+            operacion == null && profundidad == 0 -> return valor
+        }
+        valor = this.operacion!!(argumentos.first(), argumentos.last())
+        return valor
     }
 
     /**
@@ -65,8 +67,8 @@ open class Nodo(
         this.operacion = otroNodo.operacion
         this.argumentos = otroNodo.argumentos
         this.numArgumentos = otroNodo.numArgumentos
-
-
+        this.profundidad = otroNodo.profundidad
+        this.valor = otroNodo.valor
     }
 
 }

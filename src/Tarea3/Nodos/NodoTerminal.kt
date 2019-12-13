@@ -6,9 +6,9 @@ package Tarea3.Nodos
  */
 class NodoTerminal(
 
-    val valor: Int,
+    override var valor: Int,
     private val profundo: Int
-) : Nodo(null, profundidad = profundo) {
+) : Nodo(null, 0) {
 
     override fun eval(): Int {
         return valor
@@ -21,4 +21,6 @@ class NodoTerminal(
     override fun toString(): String {
         return this.valor.toString()
     }
+
+
 }

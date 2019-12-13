@@ -74,6 +74,7 @@ internal class NodoBinarioTest {
         val el = suma1.eval()
         assertEquals(multi1, suma1.nodoIzq)
         assertNotEquals(al, el)
+        println(multi3.eval())
     }
 
 }
