@@ -8,7 +8,6 @@ import com.sun.security.auth.NTDomainPrincipal
  *
  */
 class Bosque(
-    var generador: AST,
     var funcionFitness: (Nodo) -> Double,
     val profundidad: Int,
     val operaciones: MutableList<(Nodo, Nodo) -> Int>,
@@ -17,11 +16,12 @@ class Bosque(
     val probMutcion: Double
 ) {
 
+    private var generador: AST = AST(operaciones, valoresTerminal) //generador de arboles
     private var arboles: MutableList<Arbol> = mutableListOf()//donde se guardan referencias a los arboles del bosque
 
     init {
         for (i in 0 until cantArboles) {
-            val arbol: Arbol = Arbol(generador, funcionFitness, profundidad)
+            val arbol = Arbol(generador, funcionFitness, profundidad)
             arbol.actualizarFitnesss()
             arboles.add(arbol)
         }
