@@ -14,7 +14,7 @@ class Bosque(
     val cantArboles: Int,
     val probMutacion: Double
 ) {
-
+    var historial: MutableList<Array<Double>> = mutableListOf()
     private var generador: AST = AST(operaciones, valoresTerminal) //generador de arboles
     private var arboles: MutableList<Arbol> = mutableListOf()//donde se guardan referencias a los arboles del bosque
 
@@ -59,5 +59,22 @@ class Bosque(
             else -> listOf(a, b).random()
 
         }
+    }
+
+    fun estadisticas() {
+        var minimo: Double = Double.MAX_VALUE
+        var maximo: Double = Double.MIN_VALUE
+        var promedio: Double = 0.0
+        arboles.map {
+            promedio += it.fitness
+            if (maximo < it.fitness) {
+                maximo = it.fitness
+
+            }
+            if (minimo > it.fitness) {
+                minimo = it.fitness
+            }
+        }
+        historial.add(arrayOf(minimo.toDouble(), maximo.toDouble(), promedio.toDouble() / cantArboles))
     }
 }
