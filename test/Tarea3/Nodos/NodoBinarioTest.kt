@@ -54,10 +54,12 @@ internal class NodoBinarioTest {
     fun eval() {
         assertEquals(13, suma1.eval())
         assertEquals(264, multi3.eval())
+
     }
 
     @Test
     fun copiar() {
+        println(suma1)
         val a = suma1.copiar()
         assertEquals(13, a.eval())
         val b = resta.copiar()
@@ -68,6 +70,7 @@ internal class NodoBinarioTest {
 
     @Test
     fun reemplazar() {
+        println(multi3)
         assertEquals(multi1, suma1.nodoIzq)
         val al = suma1.eval()
         multi1.reemplazar(multi3)

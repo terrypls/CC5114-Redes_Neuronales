@@ -14,7 +14,7 @@ class EncontrarNumero {
             15,
             funciones,
             terminales,
-            50,
+            600,
             0.1
         )
 

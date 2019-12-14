@@ -33,8 +33,25 @@ carpeta Nodos y la carpeta Arboles, ambos fueron implementados siguiendo la estr
  recibir las funciones y terminales a usar para la resolucion del problema, que luego seran
  entregadas a un AST propio de cada arbol
  
+ Cabe destacar que se implemento una variante de la funcion __toString()__ para poder tener
+ un registro visual de como se estaban evaluando cada uno de los arboles, en inorden para mejor
+ claridad de la estructura del arbol.
+  
+  Tambien se opto desde un comienzo limitar el tamaño maximo de
+ los arboles de dos maneras. La primera corresponde a una condicion de tamaño maximo al momento de crea
+ un bosque, y la otra es la probabilidad de que el nodo sea un nodo terminal. 
  
  
+## Ejercicios
+ Para el caso de los ejercicios, solo se alcanzo a implementar el primero de los propuestos,
+ debido a complicaciones con el codigo y el lenguaje, ya que no se tenia conocimientos muy
+ profundo de la forma que tiene Kotlin para trabajar funciones como parametros de otras funciones
+ al momento de implementar la tarea.
  
+ 
+  ![imagen](/Assets/maravillosa.jpg "Ejercicio 1")
+ 
+ El grafico corresponde a una prueba realizada con un bosque con 50 arboles y cada uno
+ con una profundidad maxima de 15
  
  
