@@ -49,7 +49,10 @@ carpeta Nodos y la carpeta Arboles, ambos fueron implementados siguiendo la estr
  al momento de implementar la tarea.
  
  
-  ![imagen](src/Tarea3/Assets/maravillosa.jpg "Ejercicio 1")
+
+<center>
+ <img src="https://github.com/terrypls/CC5114-Redes_Neuronales/blob/master/src/Tarea3/Assets/maravillosa.jpg" alt="Ejercicio 1">
+</center>
  
  El grafico corresponde a una prueba realizada con un bosque con 50 arboles y cada uno
  con una profundidad maxima de 15
