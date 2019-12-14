@@ -11,10 +11,10 @@ class EncontrarNumero {
     val bosque: Bosque =
         Bosque(
             funcionSinLimites(),
-            8,
+            15,
             funciones,
             terminales,
-            100,
+            50,
             0.1
         )
 
@@ -45,8 +45,9 @@ fun main() {
     plot.draw()
 
 }
-class funcionSinLimites : (Nodo) -> Double {
-    override fun invoke(p1: Nodo): Double {
-        return (65346.toDouble() - abs(65346 - p1.eval()).toDouble())
+
+class funcionSinLimites : (Nodo) -> Int {
+    override fun invoke(p1: Nodo): Int {
+        return (65346 - abs(65346 - p1.eval()))
     }
 }

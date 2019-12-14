@@ -14,7 +14,7 @@ internal class ArbolTest {
     lateinit var arbol: Arbol
     lateinit var otroArbol: Arbol
     lateinit var generador: AST
-    lateinit var funFitness: (Nodo) -> Double
+    lateinit var funFitness: (Nodo) -> Int
     @BeforeEach
     fun setUp() {
         terminales = mutableListOf(25, 7, 8, 100, 4, 2)

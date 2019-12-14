@@ -32,8 +32,8 @@ open class Nodo(
         when {
             operacion == null && profundidad == 0 -> return valor
         }
-        valor = this.operacion!!(argumentos.first(), argumentos.last())
-        return valor
+        //valor =
+        return this.operacion!!(argumentos.first(), argumentos.last())
     }
 
     /**

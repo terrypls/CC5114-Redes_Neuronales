@@ -12,7 +12,7 @@ internal class BosqueTest {
     lateinit var bosque: Bosque
     lateinit var otroBosque: Bosque
     lateinit var generador: AST
-    lateinit var funFitness: (Nodo) -> Double
+    lateinit var funFitness: (Nodo) -> Int
     @BeforeEach
     fun setUp() {
         terminales = mutableListOf(25, 7, 8, 100, 4, 2)

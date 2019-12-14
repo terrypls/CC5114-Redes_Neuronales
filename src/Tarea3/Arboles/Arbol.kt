@@ -12,7 +12,7 @@ import kotlin.random.Random
  */
 class Arbol(
     var generador: AST,
-    var funcionFitness: (Nodo) -> Double,
+    var funcionFitness: (Nodo) -> Int,
     val profundidad: Int? = 10,
     nodoRaiz: Nodo?
 ) : Comparable<Arbol> {
@@ -21,7 +21,7 @@ class Arbol(
         null -> generador.invoke(profundidad)
         else -> nodoRaiz
     }
-    var fitness: Double = Double.MIN_VALUE
+    var fitness: Int = Int.MIN_VALUE
     var nodos: MutableList<Nodo> = mutableListOf()
     var evaluacion: Int = 0
 
@@ -32,7 +32,7 @@ class Arbol(
 
     constructor(
         generador: AST,
-        funcionFitness: (Nodo) -> Double,
+        funcionFitness: (Nodo) -> Int,
         profundidad: Int?
     ) : this(generador, funcionFitness, profundidad, nodoRaiz = null)
 
@@ -68,8 +68,8 @@ class Arbol(
 
             nodoAux.reemplazar(arbolaux)
             nodos = this.raiz.serializar()
+            this.eval()
         }
-
     }
 
     fun eval(): Int {
@@ -78,7 +78,7 @@ class Arbol(
     }
 
     fun actualizarFitnesss() {
-        fitness = funcionFitness(raiz)
+        fitness = funcionFitness(this.raiz)
     }
 
     /**

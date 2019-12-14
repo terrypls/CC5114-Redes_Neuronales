@@ -16,17 +16,13 @@ import kotlin.random.Random.Default.nextInt
  * @param probMutacion probabilidad de que un nodo de algun arbol mute
  */
 class Bosque(
-    var funcionFitness: (Nodo) -> Double,
+    var funcionFitness: (Nodo) -> Int,
     val profundidad: Int,
     val operaciones: MutableList<(Nodo, Nodo) -> Int>,
     val valoresTerminal: MutableList<Int>,
     val cantArboles: Int,
     val probMutacion: Double
 ) {
-    var maxFitness: Double = Double.MAX_VALUE
-    var peorFitness: Double = Double.MIN_VALUE
-    var promedio: Double = 0.0
-    var historial: MutableList<Array<Double>> = mutableListOf()
     private var generador: AST =
         AST(operaciones, valoresTerminal) //generador de arboles
     var arboles: MutableList<Arbol> = mutableListOf()//donde se guardan referencias a los arboles del bosque
@@ -51,20 +47,22 @@ class Bosque(
                 indice < arboles.size - supervivientes - 1 -> {
                     val papa = competenciaArboles()
                     val mama = competenciaArboles()
-
-                    val hijo1 = papa.crossover(mama)
-                    val hijo2 = mama.crossover(papa)
-
-                    hijo1.mutar(probMutacion)
-                    hijo2.mutar(probMutacion)
-                    hijos.add(hijo1)
-                    hijos.add(hijo2)
+                    hijos.addAll(evoAux(papa, mama))
+                    indice += 2
                 }
                 else -> hijos.add(arboles[indice++])
             }
         }
         arboles = hijos
         arboles.sort()
+    }
+
+    fun evoAux(papa: Arbol, mama: Arbol): List<Arbol> {
+        val hijo1 = papa.crossover(mama)
+        val hijo2 = mama.crossover(papa)
+        hijo1.mutar(probMutacion)
+        hijo2.mutar(probMutacion)
+        return listOf(hijo1, hijo2)
     }
 
     /**
