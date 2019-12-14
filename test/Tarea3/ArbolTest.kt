@@ -1,11 +1,11 @@
 package Tarea3
 
+import Tarea3.Arboles.AST
+import Tarea3.Arboles.Arbol
 import Tarea3.Ejercicios.funcionSinLimites
 import Tarea3.Nodos.Nodo
-import Tarea3.Nodos.NodoTerminal
 import org.junit.jupiter.api.BeforeEach
 
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 internal class ArbolTest {

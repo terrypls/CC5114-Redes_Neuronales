@@ -1,10 +1,9 @@
 package Tarea3
 
+import Tarea3.Arboles.AST
 import Tarea3.Nodos.Nodo
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 
 internal class ASTTest {
 
