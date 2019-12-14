@@ -22,12 +22,12 @@ class EncontrarNumero {
     fun encontrarCoso(): MutableList<Double> {
         var vueltas = 0
         val listaFitness: MutableList<Double> = mutableListOf(-1.0)
-        while (listaFitness.last().toInt() != 0) {
+        while (listaFitness.last().toInt() != 65346) {
             listaFitness.add(bosque.mejorFitness().toDouble())
             bosque.evolucionar()
             vueltas++
             when {
-                vueltas % 10 == 0 -> println("vuelta $vueltas, fitness ${65346 - bosque.mejorFitness()}, mejor${listaFitness.last().toInt()}")
+                vueltas % 10 == 0 -> println("vuelta $vueltas, que tan lejos estoy ${65346 - bosque.mejorFitness()}, mejor${listaFitness.last().toInt()}")
             }
 
         }
@@ -40,8 +40,7 @@ class EncontrarNumero {
 fun main() {
     val algo = EncontrarNumero()
     val lista = algo.encontrarCoso()
-
-    val plot = LinePlot("Sin limite de repeticiones", "Fitness", "Generaciones", "fitness")
+    val plot = LinePlot("Sin limite de repeticiones", "Generacion", "Fitness", "fitness")
     plot.yData = lista.toDoubleArray()
     plot.draw()
 

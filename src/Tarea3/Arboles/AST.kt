@@ -14,7 +14,7 @@ import kotlin.random.Random.Default.nextDouble
 class AST(
     private val operaciones: MutableList<(Nodo, Nodo) -> Int>,
     private val valoresTerminal: MutableList<Int>,
-    private val probTerminal: Double = 0.3
+    private val probTerminal: Double = 0.4
 ) {
     /**
      * llamado a la funcion de creacion de arboles

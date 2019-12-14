@@ -70,7 +70,7 @@ class Bosque(
     /**
      * ordena los arboles comparando sus fitness, el ultimo es el que tiene el mejor fitness
      */
-    fun mejorArbol() = arboles.first()
+    fun mejorArbol() = arboles.last()
 
     /**
      * entrega el fitness del arbol

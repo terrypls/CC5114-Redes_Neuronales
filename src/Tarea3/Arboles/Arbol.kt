@@ -21,7 +21,7 @@ class Arbol(
         null -> generador.invoke(profundidad)
         else -> nodoRaiz
     }
-    var fitness: Double = Double.MAX_VALUE
+    var fitness: Double = Double.MIN_VALUE
     var nodos: MutableList<Nodo> = mutableListOf()
     var evaluacion: Int = 0
 
